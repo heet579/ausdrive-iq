@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Projects | Heet Patel</title>
+    <meta name="description" content="Projects by Heet Patel — Fleetek, AusDrive IQ, ML Fraud Detection, Digital Cafe, and RLHF Alignment Dashboard.">
+    <meta property="og:title" content="Projects | Heet Patel">
+    <meta property="og:type" content="website">
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#4cd7f6",
+                        "secondary": "#adc6ff",
+                        "tertiary": "#d0bcff",
+                        "surface": "#080f20",
+                        "background": "#080f20",
+                        "on-background": "#dbe1fe",
+                        "on-surface": "#e8eeff",
+                        "on-surface-variant": "#bcc9cd",
+                        "outline-variant": "#3d494c",
+                        "surface-container-low": "#0f1728",
+                        "surface-container": "#141f35",
+                        "surface-container-high": "#1e2840",
+                        "surface-container-highest": "#28334e",
+                        "surface-container-lowest": "#050c1c",
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "mono": ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "monospace"],
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        * { box-sizing: border-box; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+
+        .orb {
+            position: fixed; border-radius: 50%;
+            pointer-events: none; z-index: 0;
+        }
+        .orb-1 {
+            width: 700px; height: 700px;
+            background: radial-gradient(circle, rgba(76,215,246,0.065) 0%, transparent 65%);
+            top: -200px; right: -150px;
+            animation: orb-drift 20s ease-in-out infinite alternate;
+        }
+        .orb-2 {
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(208,188,255,0.05) 0%, transparent 65%);
+            bottom: 150px; left: -100px;
+            animation: orb-drift 26s ease-in-out infinite alternate-reverse;
+        }
+        @keyframes orb-drift {
+            from { transform: translate(0,0); }
+            to   { transform: translate(55px,35px) scale(1.1); }
+        }
+        .dot-grid {
+            background-image: radial-gradient(rgba(76,215,246,0.06) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+        .glass-nav {
+            background: rgba(8,15,32,0.8);
+            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+        }
+        .primary-gradient { background: linear-gradient(135deg, #4cd7f6 0%, #06b6d4 100%); }
+        .gradient-text {
+            background: linear-gradient(135deg, #4cd7f6 0%, #adc6ff 55%, #d0bcff 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+
+        /* Project cards */
+        .proj-card {
+            background: rgba(15,23,40,0.65);
+            border: 1px solid rgba(61,73,76,0.22);
+            transition: all 0.45s cubic-bezier(0.4,0,0.2,1);
+        }
+        .proj-card:hover {
+            border-color: rgba(76,215,246,0.32);
+            box-shadow: 0 0 35px rgba(76,215,246,0.07), 0 24px 60px rgba(0,0,0,0.35);
+            transform: translateY(-4px);
+        }
+
+        /* Research hub cards */
+        .research-card {
+            background: rgba(15,23,40,0.65);
+            border: 1px solid rgba(61,73,76,0.2);
+            transition: all 0.4s;
+        }
+        .research-card:hover {
+            border-color: rgba(76,215,246,0.28);
+            background: rgba(20,31,53,0.8);
+            transform: translateY(-3px);
+        }
+
+        /* Tech tags */
+        .tag {
+            display: inline-block; padding: 3px 9px;
+            background: rgba(40,51,78,0.7); border: 1px solid rgba(61,73,76,0.3);
+            border-radius: 4px; font-family: ui-monospace, monospace;
+            font-size: 9px; color: #bcc9cd;
+            transition: all 0.2s;
+        }
+
+        /* Tilt card (RLHF lab, preserved) */
+        .tilt-card {
+            transform-style: preserve-3d;
+            transform: perspective(1000px) rotateX(0) rotateY(0);
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            will-change: transform;
+        }
+        .tilt-card:hover { transition: transform 0.1s; }
+        .tilt-inner { transform: translateZ(30px); }
+
+        /* Spring bar (RLHF lab, preserved) */
+        .spring-bar {
+            transition: width 1.2s cubic-bezier(0.175,0.885,0.32,1.275),
+                        height 1.2s cubic-bezier(0.175,0.885,0.32,1.275);
+        }
+
+        /* Typing cursor (RLHF lab, preserved) */
+        .typing-cursor::after {
+            content: '█'; animation: blink-cursor 1s step-end infinite;
+            color: currentColor; margin-left: 2px; font-size:0.8em;
+            vertical-align: text-bottom; opacity: 0.7;
+        }
+        @keyframes blink-cursor { 0%,100%{opacity:1} 50%{opacity:0} }
+
+        .animate-on-scroll {
+            opacity: 0; transform: translateY(22px);
+            transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1), transform 0.8s cubic-bezier(0.4,0,0.2,1);
+        }
+        .animate-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
+
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #080f20; }
+        ::-webkit-scrollbar-thumb { background: rgba(76,215,246,0.25); border-radius: 3px; }
+        .custom-scrollbar-minimal::-webkit-scrollbar { width: 3px; }
+        .custom-scrollbar-minimal::-webkit-scrollbar-thumb { background: rgba(76,215,246,0.2); border-radius: 2px; }
+        ::selection { background: rgba(76,215,246,0.22); color: #4cd7f6; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body overflow-x-hidden">
+
+    <div class="orb orb-1" aria-hidden="true"></div>
+    <div class="orb orb-2" aria-hidden="true"></div>
+    <div class="dot-grid fixed inset-0 pointer-events-none z-0 opacity-55" aria-hidden="true"></div>
+
+    <!-- NAV -->
+    <nav class="fixed top-0 w-full z-50 glass-nav border-b border-white/5 transition-all duration-300">
+        <div class="flex justify-between items-center px-6 md:px-10 h-20 max-w-7xl mx-auto">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-9 h-9 primary-gradient rounded-xl flex items-center justify-center shadow-lg shadow-primary/20 group-hover:brightness-110 transition-all">
+                    <span class="material-symbols-outlined text-surface" style="font-size:18px">memory</span>
+                </div>
+                <div>
+                    <div class="font-headline font-bold text-on-surface leading-none">Heet Patel</div>
+                    <div class="font-mono text-[9px] text-secondary uppercase tracking-widest">AI Engineer</div>
+                </div>
+            </a>
+            <div class="hidden md:flex items-center gap-8">
+                <a class="font-headline font-semibold text-on-surface-variant hover:text-primary transition-colors" href="index.html">Home</a>
+                <a class="font-headline font-semibold text-primary border-b border-primary pb-0.5" href="projects.html">Projects</a>
+                <a class="font-headline font-semibold text-on-surface-variant hover:text-primary transition-colors" href="about.html">Skills</a>
+                <a class="font-headline font-semibold text-on-surface-variant hover:text-primary transition-colors" href="services.html">IT Support</a>
+            </div>
+            <div class="hidden md:flex items-center gap-4">
+                <a href="index.html#connect" class="flex items-center gap-1.5 font-headline font-semibold text-sm text-secondary hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined text-base">qr_code_2</span>Connect
+                </a>
+                <a href="heet_resume.pdf" download class="primary-gradient text-surface px-5 py-2 rounded-lg font-headline font-bold text-sm hover:brightness-110 active:scale-95 transition-all shadow-md shadow-primary/20">
+                    Resume
+                </a>
+            </div>
+            <button id="mobile-menu-btn" class="md:hidden text-primary focus:outline-none">
+                <span class="material-symbols-outlined text-3xl" id="mobile-menu-icon">menu</span>
+            </button>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden bg-surface-container-lowest/96 backdrop-blur-xl border-t border-white/5 absolute w-full shadow-2xl">
+            <a class="flex items-center gap-3 p-4 px-6 font-headline font-semibold text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors border-b border-white/5" href="index.html">
+                <span class="material-symbols-outlined text-sm">home</span>Home
+            </a>
+            <a class="flex items-center gap-3 p-4 px-6 font-headline font-semibold text-primary bg-primary/5 border-b border-white/5" href="projects.html">
+                <span class="material-symbols-outlined text-sm">folder_code</span>Projects
+            </a>
+            <a class="flex items-center gap-3 p-4 px-6 font-headline font-semibold text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors border-b border-white/5" href="about.html">
+                <span class="material-symbols-outlined text-sm">person</span>Skills
+            </a>
+            <a class="flex items-center gap-3 p-4 px-6 font-headline font-semibold text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors border-b border-white/5" href="services.html">
+                <span class="material-symbols-outlined text-sm">support_agent</span>IT Support
+            </a>
+            <div class="p-6 flex gap-3">
+                <a href="index.html#connect" class="flex-1 text-center bg-surface-container border border-outline-variant/25 text-on-surface px-4 py-3 rounded-lg font-headline font-bold text-sm flex items-center justify-center gap-1.5">
+                    <span class="material-symbols-outlined text-sm">qr_code_2</span>Connect
+                </a>
+                <a href="heet_resume.pdf" download class="flex-1 text-center primary-gradient text-surface px-4 py-3 rounded-lg font-headline font-bold text-sm">Resume</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN -->
+    <main class="relative z-10 pt-32 pb-20 px-6 md:px-10 max-w-7xl mx-auto">
+
+        <!-- ── HEADER ── -->
+        <header class="mb-16 animate-on-scroll">
+            <div class="inline-block px-3 py-1.5 bg-surface-container-low border border-outline-variant/20 rounded-full mb-5">
+                <span class="font-mono text-[9px] uppercase tracking-widest text-secondary">Architecture · Repositories</span>
+            </div>
+            <h1 class="font-headline text-5xl md:text-7xl font-extrabold tracking-tighter leading-[1.04] mb-5">
+                Project <span class="gradient-text">Showcase</span>
+            </h1>
+            <p class="text-on-surface-variant text-lg max-w-2xl leading-relaxed">
+                Selected repositories spanning ML pipelines, full-stack web apps, QR-based commerce, and live AI alignment experiments.
+            </p>
+        </header>
+
+        <!-- ── PROJECT GRID ── -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-5 animate-on-scroll">
+
+            <!-- Fleetek -->
+            <div class="proj-card md:col-span-7 group rounded-2xl overflow-hidden">
+                <div class="relative h-[280px] overflow-hidden">
+                    <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" src="images/projects/fleetek_showcase.png" alt="Fleetek"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/30 to-transparent"></div>
+                    <div class="absolute top-5 left-5 flex gap-2">
+                        <span class="px-2.5 py-1 primary-gradient text-surface font-mono text-[9px] font-bold rounded uppercase tracking-wider">Enterprise</span>
+                        <span class="px-2.5 py-1 bg-surface-container-highest/90 text-secondary font-mono text-[9px] rounded uppercase tracking-wider">Inventory</span>
+                    </div>
+                </div>
+                <div class="p-7">
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="font-headline text-2xl font-bold">Freelance: Fleetek</h3>
+                        <div class="flex gap-3">
+                            <a class="w-8 h-8 bg-surface-container-high rounded-lg flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-surface-container-highest transition-all" href="https://github.com/heet579/Fleetek" target="_blank">
+                                <span class="material-symbols-outlined text-base">code</span>
+                            </a>
+                            <a class="w-8 h-8 bg-surface-container-high rounded-lg flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-surface-container-highest transition-all" href="fleetek.mp4" target="_blank">
+                                <span class="material-symbols-outlined text-base">play_circle</span>
+                            </a>
+                        </div>
+                    </div>
+                    <p class="text-on-surface-variant text-sm leading-relaxed mb-5 max-w-xl">
+                        Full car inventory management system built as a freelance project. Features dynamic stock analytics and comprehensive report generation.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="tag">React</span>
+                        <span class="tag">Node.js</span>
+                        <span class="tag">MongoDB</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ML Fraud Detection -->
+            <div class="proj-card md:col-span-5 group rounded-2xl overflow-hidden">
+                <div class="relative h-[280px] overflow-hidden">
+                    <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" src="images/projects/ml_fraud_showcase.png" alt="Fraud Detection"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/30 to-transparent"></div>
+                    <div class="absolute top-5 left-5 flex gap-2">
+                        <span class="px-2.5 py-1 bg-tertiary text-surface font-mono text-[9px] font-bold rounded uppercase tracking-wider">AI / ML</span>
+                        <span class="px-2.5 py-1 bg-surface-container-highest/90 text-secondary font-mono text-[9px] rounded uppercase tracking-wider">Security</span>
+                    </div>
+                </div>
+                <div class="p-7">
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="font-headline text-2xl font-bold">Fraud Detection Engine</h3>
+                        <div class="flex gap-3">
+                            <a class="w-8 h-8 bg-surface-container-high rounded-lg flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-surface-container-highest transition-all" href="images/projects/fraud_highlight.png" target="_blank">
+                                <span class="material-symbols-outlined text-base">visibility</span>
+                            </a>
+                        </div>
+                    </div>
+                    <p class="text-on-surface-variant text-sm leading-relaxed mb-5">
+                        Real-time credit card fraud detection using XGBoost and Logistic Regression. Interactive Streamlit dashboard for transaction monitoring.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="tag">XGBoost</span>
+                        <span class="tag">Streamlit</span>
+                        <span class="tag">Scikit-Learn</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AusDrive IQ -->
+            <div class="proj-card md:col-span-8 group rounded-2xl overflow-hidden">
+                <div class="relative h-[260px] overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-br from-[#0a1128] to-[#141f35] flex items-center justify-center">
+                        <span class="material-symbols-outlined text-[80px] text-primary/15">directions_car</span>
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/20 to-transparent"></div>
+                    <div class="absolute top-5 left-5 flex gap-2">
+                        <span class="px-2.5 py-1 primary-gradient text-surface font-mono text-[9px] font-bold rounded uppercase tracking-wider">Machine Learning</span>
+                        <span class="px-2.5 py-1 bg-surface-container-highest/90 text-secondary font-mono text-[9px] rounded uppercase tracking-wider">InsurTech</span>
+                    </div>
+                </div>
+                <div class="p-7">
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="font-headline text-2xl font-bold">AusDrive IQ</h3>
+                        <div class="flex gap-3">
+                            <a class="w-8 h-8 bg-surface-container-high rounded-lg flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-surface-container-highest transition-all" href="https://github.com/heet579/ausdrive-iq" target="_blank">
+                                <span class="material-symbols-outlined text-base">code</span>
+                            </a>
+                            <a class="w-8 h-8 bg-surface-container-high rounded-lg flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-surface-container-highest transition-all" href="#" target="_blank">
+                                <span class="material-symbols-outlined text-base">open_in_new</span>
+                            </a>
+                        </div>
+                    </div>
+                    <p class="text-on-surface-variant text-sm leading-relaxed mb-5 max-w-2xl">
+                        End-to-end ML pipeline addressing Australia's vehicle registration non-compliance, insurance mis-pricing, and EV transition forecasting. Features synthetic data (mirroring ABS distributions), XGBoost risk scoring with Optuna, SHAP explainability, and a real-time what-if simulator.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="tag">Python</span>
+                        <span class="tag">XGBoost</span>
+                        <span class="tag">SHAP</span>
+                        <span class="tag">Streamlit</span>
+                        <span class="tag">Plotly</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Digital Cafe -->
+            <div class="proj-card md:col-span-4 rounded-2xl p-7 flex flex-col group">
+                <div class="aspect-video rounded-xl overflow-hidden relative bg-surface-container-high mb-6 border border-outline-variant/15">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-5xl text-primary/25">restaurant</span>
+                    </div>
+                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span class="px-4 py-2 bg-primary/20 backdrop-blur-md rounded-lg text-primary text-xs font-mono font-bold border border-primary/20">NEXT_GEN COMMERCE</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-1.5 mb-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                    <span class="font-mono text-[9px] text-primary uppercase tracking-widest">Dynamic Web</span>
+                </div>
+                <h3 class="font-headline text-xl font-bold mb-3">Digital Cafe Order System</h3>
+                <p class="text-on-surface-variant text-sm mb-5 flex-grow leading-relaxed">
+                    QR-code based ordering platform built with Next.js 14. Real-time notifications and streamlined checkout for modern venues.
+                </p>
+                <div class="flex flex-wrap gap-1.5 mb-5">
+                    <span class="tag">Next.js 14</span>
+                    <span class="tag">TypeScript</span>
+                    <span class="tag">Push API</span>
+                </div>
+                <a href="https://github.com/heet579" target="_blank" class="flex items-center gap-1.5 text-xs font-mono text-secondary hover:text-primary transition-colors">
+                    GitHub <span class="material-symbols-outlined text-sm">north_east</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- ── LOGIC & RESEARCH HUB ── -->
+        <section class="mt-24 animate-on-scroll">
+            <div class="mb-10">
+                <div class="font-mono text-[10px] text-secondary uppercase tracking-widest mb-3">Ongoing Work</div>
+                <h2 class="text-4xl font-headline font-bold tracking-tight border-b border-outline-variant/15 pb-5">Logic & Research Hub</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <div class="research-card p-8 rounded-2xl">
+                    <div class="w-11 h-11 bg-tertiary/10 border border-tertiary/18 rounded-xl flex items-center justify-center mb-5">
+                        <span class="material-symbols-outlined text-tertiary" style="font-size:22px">security_update_good</span>
+                    </div>
+                    <div class="font-mono text-[9px] text-tertiary mb-2 uppercase tracking-widest">Advanced AI · Trust</div>
+                    <h3 class="font-headline text-xl font-bold mb-3">LLM Research & Eval</h3>
+                    <p class="text-on-surface-variant text-sm leading-relaxed">Training models leveraging RLHF pipelines, evaluating LLMs on Bias, Fairness & Trustworthiness, and developing a RAG Evaluation System.</p>
+                </div>
+                <div class="research-card p-8 rounded-2xl">
+                    <div class="w-11 h-11 bg-primary/10 border border-primary/18 rounded-xl flex items-center justify-center mb-5">
+                        <span class="material-symbols-outlined text-primary" style="font-size:22px">analytics</span>
+                    </div>
+                    <div class="font-mono text-[9px] text-primary mb-2 uppercase tracking-widest">Research Pipeline</div>
+                    <h3 class="font-headline text-xl font-bold mb-3">Multi-Model Eval Pipeline</h3>
+                    <p class="text-on-surface-variant text-sm leading-relaxed">Automated comparative analysis pipeline for model behavior tracking, toxicity scoring, and benchmark generation.</p>
+                </div>
+                <div class="research-card p-8 rounded-2xl">
+                    <div class="w-11 h-11 bg-secondary/10 border border-secondary/18 rounded-xl flex items-center justify-center mb-5">
+                        <span class="material-symbols-outlined text-secondary" style="font-size:22px">trending_up</span>
+                    </div>
+                    <div class="font-mono text-[9px] text-secondary mb-2 uppercase tracking-widest">Quantitative</div>
+                    <h3 class="font-headline text-xl font-bold mb-3">Quant Analytics</h3>
+                    <p class="text-on-surface-variant text-sm leading-relaxed">Architecting a Quant Analytics project to process and evaluate high-frequency quantitative models.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── RLHF ALIGNMENT LAB (preserved) ── -->
+        <section id="rlhf-lab" class="mt-32 space-y-12 mb-20 bg-[#0a1128] p-10 md:p-12 rounded-[2.5rem] border border-[#4cd7f6]/20 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.6)] relative overflow-hidden animate-on-scroll">
+            <div class="absolute -top-24 -right-24 w-96 h-96 bg-primary/15 rounded-full blur-[120px] pointer-events-none animate-pulse"></div>
+            <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-secondary/10 rounded-full blur-[120px] pointer-events-none delay-700 animate-pulse"></div>
+
+            <div class="relative z-10 flex flex-col lg:flex-row justify-between items-start lg:items-end gap-10 border-b border-[#3d494c]/30 pb-12">
+                <div class="space-y-6">
+                    <div class="inline-flex items-center gap-3 px-4 py-2 bg-[#4cd7f6]/10 border border-[#4cd7f6]/30 rounded-full">
+                        <span class="relative flex h-2 w-2">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                        </span>
+                        <span class="font-mono text-[10px] uppercase tracking-[0.2em] text-[#4cd7f6] font-bold">Lab Environment // Ver 3.0</span>
+                    </div>
+                    <h2 class="text-5xl md:text-7xl font-headline font-bold tracking-tighter text-white leading-[0.9]">RLHF <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">Alignment</span> Dashboard</h2>
+                    <p class="text-[#adc6ff]/50 max-w-2xl text-base leading-relaxed">
+                        The alignment loop. <span class="text-primary font-bold">Give a prompt</span> to generate candidate responses, then optimize the reward model to match your specific intent.
+                    </p>
+                </div>
+                <div id="session-progress" class="lg:flex items-center gap-4 font-mono text-[11px] text-secondary tracking-[0.3em] uppercase bg-[#0b1326] px-6 py-3 rounded-xl border border-[#3d494c]/20">
+                    Step <span id="current-step-num" class="text-white font-bold text-lg">1</span><span class="opacity-30">/3</span>
+                </div>
+            </div>
+
+            <!-- Success Overlay -->
+            <div id="success-overlay" class="hidden absolute inset-0 z-50 bg-[#0a1128]/98 backdrop-blur-2xl flex flex-col items-center justify-center text-center p-8 space-y-10">
+                <div class="w-28 h-28 bg-primary/20 rounded-full border border-primary/30 flex items-center justify-center text-primary mb-4 shadow-[0_0_60px_rgba(76,215,246,0.3)] shrink-0">
+                    <span class="material-symbols-outlined text-6xl">verified_user</span>
+                </div>
+                <div class="space-y-4">
+                    <h3 class="text-5xl font-headline font-bold text-white tracking-tight">Policy Converged</h3>
+                    <p class="text-[#adc6ff]/60 max-w-md mx-auto text-base leading-relaxed">Optimization successful. The model weights have been locked with <span class="text-primary font-bold">99.1% consistency</span> to your session feedback.</p>
+                </div>
+                <div class="flex gap-6">
+                    <button onclick="resetTraining()" class="px-10 py-4 bg-[#3d494c]/30 text-white rounded-2xl border border-[#3d494c]/50 font-headline font-bold text-sm hover:bg-[#3d494c]/50 hover:scale-105 transition-all">Reset Simulation</button>
+                    <a href="services.html" class="px-10 py-4 primary-gradient text-[#0a1128] rounded-2xl font-headline font-bold text-sm hover:shadow-[0_0_30px_rgba(76,215,246,0.4)] hover:scale-105 transition-all">Deploy to Production</a>
+                </div>
+            </div>
+
+            <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                <div class="lg:col-span-8 space-y-10">
+                    <!-- Prompt Input -->
+                    <div class="bg-[#0b1326]/60 p-8 rounded-3xl border border-[#3d494c]/30 shadow-2xl relative">
+                        <div class="flex justify-between items-center mb-6">
+                            <label for="user-prompt-input" class="font-mono text-[11px] uppercase tracking-widest text-[#4cd7f6]/60 flex items-center gap-2">
+                                <span class="material-symbols-outlined text-sm">terminal</span>
+                                Dynamic Input Context
+                            </label>
+                            <div class="flex gap-2 h-1 overflow-hidden w-24">
+                                <div class="flex-1 bg-red-400/30 animate-pulse"></div>
+                                <div class="flex-1 bg-yellow-400/30 animate-pulse delay-75"></div>
+                                <div class="flex-1 bg-green-400/30 animate-pulse delay-150"></div>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <input type="text" id="user-prompt-input" class="flex-1 bg-[#0a1128] border-2 border-[#3d494c]/40 rounded-2xl p-5 font-body text-sm text-white placeholder-[#3d494c] focus:outline-none focus:border-primary/50 transition-all shadow-inner" placeholder="E.g. Explain quantum computing to a child...">
+                            <button id="gen-btn" onclick="generateResponses()" class="px-6 bg-secondary/10 border border-secondary/30 text-secondary rounded-2xl text-xs font-mono uppercase tracking-[0.1em] hover:bg-secondary/20 hover:text-white transition-all whitespace-nowrap">
+                                Gen Pairs
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Model Comparison -->
+                    <div id="response-pairs" class="grid grid-cols-1 md:grid-cols-2 gap-8 relative opacity-50 pointer-events-none grayscale transition-all duration-700">
+                        <div id="model-a-card" class="bg-[#0b1326]/80 backdrop-blur-xl p-10 rounded-3xl border-2 border-primary/10 hover:border-primary/40 transition-colors cursor-pointer group active-model relative shadow-2xl tilt-card" onclick="selectModel('A')">
+                            <div class="absolute inset-0 rounded-3xl bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+                            <div class="absolute top-0 right-0 p-5 opacity-0 group-[.active-model]:opacity-100 transition-opacity tilt-inner">
+                                <div class="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center text-primary shadow-[0_0_20px_rgba(76,215,246,0.5)]">
+                                    <span class="material-symbols-outlined text-xl">verified</span>
+                                </div>
+                            </div>
+                            <div class="tilt-inner">
+                                <span class="font-mono text-[10px] text-primary uppercase tracking-[0.3em] font-bold mb-6 block drop-shadow-sm flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                                    Path Alpha // Technical
+                                </span>
+                                <p id="resp-a-text" class="text-sm leading-relaxed text-[#adc6ff]/90 min-h-[80px]">Enter a prompt above to generate the first response branch...</p>
+                            </div>
+                        </div>
+                        <div id="model-b-card" class="bg-[#0b1326]/80 backdrop-blur-xl p-10 rounded-3xl border-2 border-secondary/10 hover:border-secondary/40 transition-colors cursor-pointer group relative shadow-2xl tilt-card" onclick="selectModel('B')">
+                            <div class="absolute inset-0 rounded-3xl bg-gradient-to-br from-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+                            <div class="absolute top-0 right-0 p-5 opacity-0 group-[.active-model]:opacity-100 transition-opacity tilt-inner">
+                                <div class="w-10 h-10 bg-secondary/20 rounded-full flex items-center justify-center text-secondary shadow-[0_0_20px_rgba(173,198,255,0.5)]">
+                                    <span class="material-symbols-outlined text-xl">verified</span>
+                                </div>
+                            </div>
+                            <div class="tilt-inner">
+                                <span class="font-mono text-[10px] text-secondary uppercase tracking-[0.3em] font-bold mb-6 block drop-shadow-sm flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+                                    Path Beta // Intuitive
+                                </span>
+                                <p id="resp-b-text" class="text-sm leading-relaxed text-[#adc6ff]/90 min-h-[80px]">Enter a prompt above to generate the second response branch...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col items-center">
+                        <button id="optimize-btn" onclick="runOptimization()" class="px-16 py-6 bg-primary text-[#0a1128] rounded-3xl font-headline font-black text-lg hover:shadow-[0_0_50px_rgba(76,215,246,0.6)] hover:scale-105 active:scale-95 transition-all flex items-center gap-5 group disabled:opacity-30 disabled:grayscale disabled:scale-100 shadow-[0_15px_30px_-10px_rgba(76,215,246,0.4)]">
+                            <span class="material-symbols-outlined text-2xl group-hover:rotate-45 transition-transform duration-500">bolt</span>
+                            Execute Optimization
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Metrics Dashboard -->
+                <div class="lg:col-span-4 space-y-8">
+                    <div class="bg-[#050914] rounded-3xl p-8 border border-[#3d494c]/30 shadow-2xl h-64 flex flex-col group">
+                        <div class="flex justify-between items-center mb-6">
+                            <h4 class="font-mono text-[10px] text-primary uppercase tracking-[0.2em] flex items-center gap-3">
+                                <span class="relative flex h-2 w-2">
+                                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-40"></span>
+                                    <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                                </span>
+                                Trace Log
+                            </h4>
+                            <span class="material-symbols-outlined text-primary/30 text-lg">terminal</span>
+                        </div>
+                        <div id="training-log" class="flex-1 font-mono text-[10px] text-[#adc6ff]/40 space-y-2 overflow-y-auto custom-scrollbar-minimal pr-4">
+                            <div class="text-primary/70 italic">$ system.initialize_simulator()</div>
+                            <div class="text-primary/70 italic">$ awaiting_user_prompt...</div>
+                        </div>
+                    </div>
+
+                    <div class="bg-[#0b1326]/80 rounded-[2rem] p-10 border border-[#3d494c]/30 space-y-12 shadow-2xl backdrop-blur-sm">
+                        <div class="space-y-6">
+                            <div class="flex justify-between items-end">
+                                <div class="space-y-2">
+                                    <span class="font-mono text-[10px] text-primary/50 uppercase tracking-[0.2em]">Objective Function</span>
+                                    <h5 class="text-white font-headline font-bold text-base">Reward Consistency</h5>
+                                </div>
+                                <div class="flex flex-col items-end">
+                                    <span id="v-rm-score" class="font-mono text-primary text-xl font-bold">0.42</span>
+                                    <span class="text-[8px] text-primary/40 font-mono">MAX=1.00</span>
+                                </div>
+                            </div>
+                            <div class="h-4 w-full bg-[#050914] rounded-2xl overflow-hidden p-1 border border-[#3d494c]/20 shadow-inner">
+                                <div id="v-rm-bar" class="h-full primary-gradient rounded-full spring-bar shadow-[0_0_20px_rgba(76,215,246,0.6)]" style="width:42%"></div>
+                            </div>
+                        </div>
+                        <div class="space-y-6">
+                            <div class="flex justify-between items-end">
+                                <div class="space-y-2">
+                                    <span class="font-mono text-[10px] text-secondary/50 uppercase tracking-[0.2em]">Regularization</span>
+                                    <h5 class="text-white font-headline font-bold text-base">KL Divergence</h5>
+                                </div>
+                                <div class="flex flex-col items-end">
+                                    <span id="v-kl-score" class="font-mono text-secondary text-xl font-bold">0.08</span>
+                                    <span class="text-[8px] text-secondary/40 font-mono">THRESHOLD=1.2</span>
+                                </div>
+                            </div>
+                            <div class="h-4 w-full bg-[#050914] rounded-2xl overflow-hidden p-1 border border-[#3d494c]/20 shadow-inner">
+                                <div id="v-kl-bar" class="h-full bg-secondary rounded-full spring-bar shadow-[0_0_20px_rgba(173,198,255,0.4)]" style="width:8%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Policy Vector Distribution -->
+                        <div class="pt-6 space-y-10">
+                            <div class="flex justify-between items-center px-2">
+                                <span class="font-mono text-[9px] text-[#adc6ff]/30 uppercase tracking-[0.4em] font-bold">Policy Vector Distribution</span>
+                                <div class="flex gap-4">
+                                    <div class="flex items-center gap-2 text-[8px] font-mono uppercase">
+                                        <div class="w-2 h-2 rounded-full border border-white/20 bg-white/5"></div>
+                                        <span class="opacity-30">Baseline</span>
+                                    </div>
+                                    <div class="flex items-center gap-2 text-[8px] font-mono uppercase">
+                                        <div class="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_rgba(76,215,246,0.5)]"></div>
+                                        <span class="text-primary/60">Aligned</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="relative h-64 px-10 flex items-end justify-around gap-12 border-l border-b border-[#3d494c]/20 pb-4 ml-6">
+                                <div class="absolute -left-10 inset-y-0 flex flex-col justify-between items-end pr-2 py-4 pointer-events-none font-mono text-[8px] text-[#adc6ff]/20">
+                                    <span>100%</span><span>75%</span><span>50%</span><span>25%</span><span>0%</span>
+                                </div>
+                                <div class="absolute inset-0 flex flex-col justify-between pointer-events-none opacity-5 py-4">
+                                    <div class="w-full h-px bg-white"></div>
+                                    <div class="w-full h-px bg-white"></div>
+                                    <div class="w-full h-px bg-white"></div>
+                                    <div class="w-full h-px bg-white"></div>
+                                </div>
+                                <div class="relative w-full h-full flex flex-col justify-end group">
+                                    <div class="absolute bottom-0 left-0 w-full bg-white/5 border border-white/10 rounded-t-lg h-[50%]"></div>
+                                    <div id="v-dist-a" class="relative w-full primary-gradient rounded-t-lg spring-bar shadow-[0_0_40px_rgba(76,215,246,0.4)] flex items-start justify-center" style="height:60%">
+                                        <div class="absolute inset-0 bg-gradient-to-t from-transparent via-white/10 to-transparent animate-pulse rounded-t-lg opacity-40"></div>
+                                        <div class="absolute -top-10 px-3 py-1.5 bg-[#0a1128]/80 backdrop-blur-md border border-primary/50 rounded-lg shadow-2xl flex items-center gap-2">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
+                                            <span id="v-dist-a-label" class="font-mono text-[10px] text-primary font-bold tracking-widest">60%</span>
+                                        </div>
+                                    </div>
+                                    <span class="absolute -bottom-8 left-1/2 -translate-x-1/2 font-mono text-[8px] text-primary/60 font-black uppercase tracking-[0.3em]">Alpha</span>
+                                </div>
+                                <div class="relative w-full h-full flex flex-col justify-end group">
+                                    <div class="absolute bottom-0 left-0 w-full bg-white/5 border border-white/10 rounded-t-lg h-[50%]"></div>
+                                    <div id="v-dist-b" class="relative w-full bg-gradient-to-t from-secondary/40 to-secondary rounded-t-lg spring-bar shadow-[0_0_40px_rgba(173,198,255,0.3)] flex items-start justify-center" style="height:40%">
+                                        <div class="absolute inset-0 bg-gradient-to-t from-transparent via-white/5 to-transparent animate-pulse rounded-t-lg delay-500 opacity-40"></div>
+                                        <div class="absolute -top-10 px-3 py-1.5 bg-[#0a1128]/80 backdrop-blur-md border border-secondary/50 rounded-lg shadow-2xl flex items-center gap-2">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-secondary animate-ping"></span>
+                                            <span id="v-dist-b-label" class="font-mono text-[10px] text-secondary font-bold tracking-widest">40%</span>
+                                        </div>
+                                    </div>
+                                    <span class="absolute -bottom-8 left-1/2 -translate-x-1/2 font-mono text-[8px] text-secondary/40 font-black uppercase tracking-[0.3em]">Beta</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="relative z-10 border-t border-white/6 py-12 bg-surface-container-lowest">
+        <div class="max-w-7xl mx-auto px-6 md:px-10 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 primary-gradient rounded-xl flex items-center justify-center">
+                    <span class="material-symbols-outlined text-surface" style="font-size:18px">memory</span>
+                </div>
+                <div>
+                    <div class="font-headline font-bold text-on-surface text-sm">Heet Patel</div>
+                    <div class="font-mono text-[9px] text-secondary uppercase tracking-widest">AI Engineer & Full-Stack Developer</div>
+                </div>
+            </div>
+            <div class="flex gap-7">
+                <a href="https://github.com/heet579" target="_blank" class="font-mono text-[10px] uppercase tracking-widest text-secondary hover:text-primary transition-colors">GitHub</a>
+                <!-- UPDATE: Replace https://www.linkedin.com/in/heet0882/ with your actual LinkedIn URL -->
+                <a href="https://www.linkedin.com/in/heet0882/" target="_blank" class="font-mono text-[10px] uppercase tracking-widest text-secondary hover:text-primary transition-colors">LinkedIn</a>
+                <a href="mailto:heet0882@gmail.com" class="font-mono text-[10px] uppercase tracking-widest text-secondary hover:text-primary transition-colors">Email</a>
+                <a href="heet_resume.pdf" download class="font-mono text-[10px] uppercase tracking-widest text-secondary hover:text-primary transition-colors">Resume</a>
+            </div>
+            <div class="font-mono text-[10px] uppercase tracking-widest text-secondary/45">© 2025 Coded with logic · Heet Patel</div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Mobile menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu    = document.getElementById('mobile-menu');
+        const mobileIcon    = document.getElementById('mobile-menu-icon');
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                mobileIcon.innerText = mobileMenu.classList.contains('hidden') ? 'menu' : 'close';
+            });
+        }
+        // Scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); observer.unobserve(e.target); } });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+        // 3D tilt effect for RLHF cards
+        document.querySelectorAll('.tilt-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const r = card.getBoundingClientRect();
+                const x = e.clientX - r.left, y = e.clientY - r.top;
+                const m = 15;
+                card.style.transform = `perspective(1000px) rotateX(${m*((y-r.height/2)/(r.height/2))*-1}deg) rotateY(${m*((x-r.width/2)/(r.width/2))}deg)`;
+            });
+            card.addEventListener('mouseleave', () => { card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)'; });
+        });
+    </script>
+
+    <!-- RLHF Lab Scripts (preserved) -->
+    <script>
+        let sessionStep = parseInt(localStorage.getItem('rlhf_step')) || 1;
+        let storedStats = localStorage.getItem('rlhf_stats');
+        let statsVal = storedStats ? JSON.parse(storedStats) : { rm: 0.42, kl: 0.08, distA: 60, distB: 40 };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('current-step-num').innerText = sessionStep;
+            renderV3_Stats();
+        });
+
+        let currentSelectionId = 'A';
+        let activeTraining = false;
+        let currentResponses = { A: '', B: '' };
+
+        function addDashboardLog(msg, type = 'sys') {
+            const log = document.getElementById('training-log');
+            if (!log) return;
+            const div = document.createElement('div');
+            div.className = "flex gap-3 leading-loose border-l-2 border-transparent pl-2 hover:bg-white/5 transition-all";
+            const icon  = type === 'sys' ? '$' : type === 'user' ? '>' : '!';
+            const color = type === 'sys' ? 'text-primary/60' : type === 'user' ? 'text-[#adc6ff]/80' : 'text-secondary/70';
+            div.innerHTML = `<span class="${color} font-black">${icon}</span> <span class="break-all">${msg}</span>`;
+            log.appendChild(div);
+            log.scrollTop = log.scrollHeight;
+        }
+
+        function typeText(elementId, text, speed = 25, callback = null) {
+            const el = document.getElementById(elementId);
+            el.innerText = '';
+            el.classList.add('typing-cursor');
+            let i = 0;
+            function type() {
+                if (i < text.length) { el.innerText += text.charAt(i); i++; setTimeout(type, speed + Math.random()*20); }
+                else { el.classList.remove('typing-cursor'); if (callback) callback(); }
+            }
+            type();
+        }
+
+        async function generateResponses() {
+            const prompt = document.getElementById('user-prompt-input').value.trim();
+            const genBtn = document.getElementById('gen-btn');
+            if (!prompt) { addDashboardLog("Warning: No input detected.", 'err'); return; }
+            genBtn.disabled = true;
+            genBtn.classList.add('opacity-50', 'pointer-events-none');
+            addDashboardLog(`Processing: "${prompt.substring(0,25)}..."`, 'user');
+            addDashboardLog("Encoding initialized...");
+            selectModel('A');
+            document.getElementById('resp-a-text').innerHTML = '<span class="text-primary/40 font-mono text-[10px] uppercase animate-pulse">[Tokenizing...]</span>';
+            document.getElementById('resp-b-text').innerHTML = '<span class="text-secondary/40 font-mono text-[10px] uppercase animate-pulse">[Loading vectors...]</span>';
+            document.getElementById('response-pairs').classList.remove('opacity-50', 'pointer-events-none', 'grayscale');
+            try {
+                const response = await fetch('http://localhost:5000/generate', {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ prompt })
+                });
+                if (!response.ok) throw new Error("Backend unavailable.");
+                const data = await response.json();
+                currentResponses.A = data.A || "Error retrieving Technical answer.";
+                currentResponses.B = data.B || "Error retrieving Simple answer.";
+                addDashboardLog("Streaming tokens...");
+                typeText('resp-a-text', currentResponses.A, 25, () => {
+                    typeText('resp-b-text', currentResponses.B, 25, () => {
+                        genBtn.disabled = false;
+                        genBtn.classList.remove('opacity-50', 'pointer-events-none');
+                        addDashboardLog("Generation complete.");
+                        document.getElementById('optimize-btn').classList.remove('opacity-30', 'grayscale', 'pointer-events-none');
+                    });
+                });
+            } catch {
+                addDashboardLog("Local model unreachable. Defaulting to heuristic...", 'sys');
+                currentResponses.A = `Technical breakdown for "${prompt}": parse through the primary analysis node first.`;
+                currentResponses.B = `Simple take on "${prompt}": let's keep it friendly and direct!`;
+                typeText('resp-a-text', currentResponses.A, 30, () => {
+                    typeText('resp-b-text', currentResponses.B, 30, () => {
+                        genBtn.disabled = false;
+                        genBtn.classList.remove('opacity-50', 'pointer-events-none');
+                        addDashboardLog("Generation complete (heuristic).");
+                        document.getElementById('optimize-btn').classList.remove('opacity-30', 'grayscale', 'pointer-events-none');
+                    });
+                });
+            }
+        }
+
+        function selectModel(id) {
+            if (activeTraining) return;
+            currentSelectionId = id;
+            const cardA = document.getElementById('model-a-card');
+            const cardB = document.getElementById('model-b-card');
+            cardA.classList.remove('active-model','border-primary/40','bg-primary/5');
+            cardB.classList.remove('active-model','border-secondary/40','bg-secondary/5');
+            if (id === 'A') cardA.classList.add('active-model','border-primary/40','bg-primary/5');
+            else            cardB.classList.add('active-model','border-secondary/40','bg-secondary/5');
+        }
+
+        function runOptimization() {
+            if (activeTraining) return;
+            if (!currentResponses.A) { addDashboardLog("Error: Buffer empty. Generate pairs first.", 'err'); return; }
+            activeTraining = true;
+            const btn = document.getElementById('optimize-btn');
+            btn.classList.add('opacity-30','pointer-events-none');
+            addDashboardLog(`Gradient Optimization Step ${sessionStep}...`);
+            addDashboardLog(`Matching preference signal from ${currentSelectionId}...`, 'sys');
+            setTimeout(() => {
+                if (currentSelectionId === 'A') { statsVal.rm = Math.min(0.99, statsVal.rm + 0.15); addDashboardLog("Global Loss Decreased. Consistency ++", 'sys'); }
+                else { statsVal.rm = Math.max(0.12, statsVal.rm - 0.08); addDashboardLog("Non-optimal signal. Correcting...", 'err'); }
+                statsVal.kl = Math.min(1.2, statsVal.kl + 0.05);
+                if (currentSelectionId === 'A') { statsVal.distA = Math.min(96, statsVal.distA + 8); statsVal.distB = Math.max(4, statsVal.distB - 8); }
+                else { statsVal.distB = Math.min(96, statsVal.distB + 8); statsVal.distA = Math.max(4, statsVal.distA - 8); }
+                localStorage.setItem('rlhf_stats', JSON.stringify(statsVal));
+                renderV3_Stats();
+                setTimeout(() => {
+                    sessionStep++;
+                    localStorage.setItem('rlhf_step', sessionStep);
+                    document.getElementById('current-step-num').innerText = sessionStep;
+                    addDashboardLog(`Weights stabilized. Turn ${sessionStep} open.`);
+                    document.getElementById('user-prompt-input').value = "";
+                    document.getElementById('response-pairs').classList.add('opacity-50','pointer-events-none','grayscale');
+                    currentResponses = { A: '', B: '' };
+                    activeTraining = false;
+                    btn.classList.remove('opacity-30','pointer-events-none');
+                }, 1400);
+            }, 1000);
+        }
+
+        function renderV3_Stats() {
+            document.getElementById('v-rm-score').innerText = statsVal.rm.toFixed(2);
+            document.getElementById('v-rm-bar').style.width = (statsVal.rm * 100) + '%';
+            document.getElementById('v-kl-score').innerText = statsVal.kl.toFixed(2);
+            document.getElementById('v-kl-bar').style.width = (statsVal.kl * 100) + '%';
+            document.getElementById('v-dist-a').style.height = statsVal.distA + '%';
+            document.getElementById('v-dist-b').style.height = statsVal.distB + '%';
+            const lA = document.getElementById('v-dist-a-label');
+            const lB = document.getElementById('v-dist-b-label');
+            if (lA) lA.innerText = Math.round(statsVal.distA) + '%';
+            if (lB) lB.innerText = Math.round(statsVal.distB) + '%';
+        }
+
+        function resetTraining() {
+            localStorage.removeItem('rlhf_step');
+            localStorage.removeItem('rlhf_stats');
+            sessionStep = 1;
+            statsVal = { rm: 0.42, kl: 0.08, distA: 60, distB: 40 };
+            document.getElementById('success-overlay').classList.add('hidden');
+            document.getElementById('training-log').innerHTML = '<div class="text-primary/70 italic">$ system.initialize_simulator()</div>';
+            document.getElementById('current-step-num').innerText = "1";
+            document.getElementById('user-prompt-input').value = "";
+            document.getElementById('response-pairs').classList.add('opacity-50','pointer-events-none','grayscale');
+            currentResponses = { A: '', B: '' };
+            renderV3_Stats();
+        }
+    </script>
+</body>
+</html>

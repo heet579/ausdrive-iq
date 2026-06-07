@@ -1,0 +1,28 @@
+# Exclude nested project repos and large ML model files
+projects/rlhf-pipeline/
+projects/fleetek/
+projects/f1-prediction/
+projects/fraud-detection/
+
+# Backend Python server (not needed for static deployment)
+backend/
+
+# Python scripts and artifacts
+generate_resume.py
+*.py
+*.pyc
+__pycache__/
+
+# Large binary model files anywhere
+*.pt
+*.safetensors
+*.bin
+*.ckpt
+
+# Jupyter notebooks
+*.ipynb
+
+# Dev / build artifacts
+node_modules/
+.git/
+*.log

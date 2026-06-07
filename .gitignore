@@ -1,0 +1,41 @@
+# ── Large ML model files ──────────────────────────────────
+*.pt
+*.pth
+*.safetensors
+*.bin
+*.ckpt
+*.onnx
+*.h5
+
+# ── Nested project repos (have their own .git) ────────────
+projects/rlhf-pipeline/
+projects/fleetek/client/node_modules/
+projects/fraud-detection/
+
+# ── Python ────────────────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.env
+venv/
+.venv/
+
+# ── Node ──────────────────────────────────────────────────
+node_modules/
+.npm/
+
+# ── OS / Editor ───────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# ── Jupyter ───────────────────────────────────────────────
+.ipynb_checkpoints/
+
+# ── Logs ──────────────────────────────────────────────────
+*.log
+npm-debug.log*

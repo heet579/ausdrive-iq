@@ -1,0 +1,34 @@
+[build]
+  # No build step — pure static HTML portfolio
+  publish = "."
+  ignore  = "exit 0"          # never skip deploy on push
+
+[build.environment]
+  NODE_VERSION = "18"
+
+# ── Clean URLs (remove .html extension) ───────────────────
+[[redirects]]
+  from   = "/about"
+  to     = "/about.html"
+  status = 200
+
+[[redirects]]
+  from   = "/projects"
+  to     = "/projects.html"
+  status = 200
+
+[[redirects]]
+  from   = "/services"
+  to     = "/services.html"
+  status = 200
+
+[[redirects]]
+  from   = "/skills"
+  to     = "/skills.html"
+  status = 200
+
+# ── 404 fallback ──────────────────────────────────────────
+[[redirects]]
+  from   = "/*"
+  to     = "/index.html"
+  status = 404

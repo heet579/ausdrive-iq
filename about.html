@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Skills & Experience | Heet Patel</title>
+    <meta name="description" content="Skills and Professional Experience of Heet Patel. Proficiencies in RLHF, React.js, Python, and Systems Architecture.">
+    <meta property="og:title" content="Skills & Experience | Heet Patel">
+    <meta property="og:type" content="website">
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#4cd7f6",
+                        "secondary": "#adc6ff",
+                        "tertiary": "#d0bcff",
+                        "surface": "#080f20",
+                        "background": "#080f20",
+                        "on-background": "#dbe1fe",
+                        "on-surface": "#e8eeff",
+                        "on-surface-variant": "#bcc9cd",
+                        "outline-variant": "#3d494c",
+                        "surface-container-low": "#0f1728",
+                        "surface-container": "#141f35",
+                        "surface-container-high": "#1e2840",
+                        "surface-container-highest": "#28334e",
+                        "surface-container-lowest": "#050c1c",
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "mono": ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "monospace"],
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        * { box-sizing: border-box; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+
+        .orb {
+            position: fixed; border-radius: 50%;
+            pointer-events: none; z-index: 0;
+        }
+        .orb-1 {
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(76,215,246,0.06) 0%, transparent 65%);
+            top: -150px; right: -100px;
+            animation: orb-drift 22s ease-in-out infinite alternate;
+        }
+        .orb-2 {
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(208,188,255,0.05) 0%, transparent 65%);
+            bottom: 200px; left: -120px;
+            animation: orb-drift 28s ease-in-out infinite alternate-reverse;
+        }
+        @keyframes orb-drift {
+            from { transform: translate(0,0); }
+            to   { transform: translate(50px,35px) scale(1.1); }
+        }
+        .dot-grid {
+            background-image: radial-gradient(rgba(76,215,246,0.06) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+        .glass-nav {
+            background: rgba(8,15,32,0.8);
+            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+        }
+        .primary-gradient { background: linear-gradient(135deg, #4cd7f6 0%, #06b6d4 100%); }
+        .gradient-text {
+            background: linear-gradient(135deg, #4cd7f6 0%, #adc6ff 55%, #d0bcff 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+
+        /* Skill bars */
+        .skill-bar { height: 2px; border-radius: 2px; background: rgba(40,51,78,1); overflow:hidden; }
+        .skill-fill {
+            height: 100%; border-radius: 2px;
+            transform: scaleX(0); transform-origin: left;
+            transition: transform 1.4s cubic-bezier(0.4,0,0.2,1) 0.3s;
+        }
+        .is-visible .skill-fill { transform: scaleX(1); }
+
+        .glass-card {
+            background: rgba(15,23,40,0.65);
+            border: 1px solid rgba(61,73,76,0.22);
+            transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+        }
+        .glass-card:hover {
+            border-color: rgba(76,215,246,0.32);
+            box-shadow: 0 0 30px rgba(76,215,246,0.07), 0 16px 50px rgba(0,0,0,0.3);
+            transform: translateY(-3px);
+        }
+
+        /* Soft skill cards */
+        .soft-card {
+            background: rgba(15,23,40,0.6);
+            border: 1px solid rgba(61,73,76,0.18);
+            transition: all 0.35s;
+        }
+        .soft-card:hover {
+            border-color: rgba(76,215,246,0.3);
+            background: rgba(20,31,53,0.8);
+            transform: translateY(-3px);
+        }
+
+        /* Timeline dots */
+        .tl-dot-primary { background: #4cd7f6; box-shadow: 0 0 0 4px rgba(8,15,32,1), 0 0 0 5px rgba(76,215,246,0.3); }
+        .tl-dot-tertiary { background: #d0bcff; box-shadow: 0 0 0 4px rgba(8,15,32,1), 0 0 0 5px rgba(208,188,255,0.3); }
+        .tl-dot-secondary { background: #adc6ff; box-shadow: 0 0 0 4px rgba(8,15,32,1), 0 0 0 5px rgba(173,198,255,0.3); }
+        .tl-dot-dim { background: #28334e; box-shadow: 0 0 0 4px rgba(8,15,32,1); }
+
+        .tech-pill {
+            display: inline-block; padding: 3px 9px;
+            background: rgba(76,215,246,0.07); border: 1px solid rgba(76,215,246,0.13);
+            border-radius: 4px; font-family: ui-monospace, monospace;
+            font-size: 10px; color: #4cd7f6;
+        }
+        .tech-pill.sec { color: #adc6ff; background: rgba(173,198,255,0.07); border-color: rgba(173,198,255,0.13); }
+        .tech-pill.ter { color: #d0bcff; background: rgba(208,188,255,0.07); border-color: rgba(208,188,255,0.13); }
+
+        .animate-on-scroll {
+            opacity: 0; transform: translateY(22px);
+            transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1), transform 0.8s cubic-bezier(0.4,0,0.2,1);
+        }
+        .animate-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
+
+        /* Profile image hover */
+        .profile-img-wrapper { transition: transform 0.6s cubic-bezier(0.4,0,0.2,1); }
+        .profile-img-wrapper:hover { transform: scale(1.02); }
+
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #080f20; }
+        ::-webkit-scrollbar-thumb { background: rgba(76,215,246,0.25); border-radius: 3px; }
+        ::selection { background: rgba(76,215,246,0.22); color: #4cd7f6; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body overflow-x-hidden">
+
+    <div class="orb orb-1" aria-hidden="true"></div>
+    <div class="orb orb-2" aria-hidden="true"></div>
+    <div class="dot-grid fixed inset-0 pointer-events-none z-0 opacity-55" aria-hidden="true"></div>
+
+    <!-- NAV -->
+    <nav class="fixed top-0 w-full z-50 glass-nav border-b border-white/5 transition-all duration-300">
+        <div class="flex justify-between items-center px-6 md:px-10 h-20 max-w-7xl mx-auto">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-9 h-9 primary-gradient rounded-xl flex items-center justify-center shadow-lg shadow-primary/20 group-hover:brightness-110 transition-all">
+                    <span class="material-symbols-outlined text-surface" style="font-size:18px">memory</span>
+                </div>
+                <div>
+                    <div class="font-headline font-bold text-on-surface leading-none">Heet Patel</div>
+                    <div class="font-mono text-[9px] text-secondary uppercase tracking-widest">AI Engineer</div>
+                </div>
+            </a>
+
+            <div class="hidden md:flex items-center gap-8">
+                <a class="font-headline font-semibold text-on-surface-variant hover:text-primary transition-colors" href="index.html">Home</a>
+                <a class="font-headline font-semibold text-on-surface-variant hover:text-primary transition-colors" href="projects.html">Projects</a>
+                <a class="font-headline font-semibold text-primary border-b border-primary pb-0.5" href="about.html">Skills</a>
+                <a class="font-headline font-semibold text-on-surface-variant hover:text-primary transition-colors" href="services.html">IT Support</a>
+            </div>
+
+            <div class="hidden md:flex items-center gap-4">
+                <a href="index.html#connect" class="flex items-center gap-1.5 font-headline font-semibold text-sm text-secondary hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined text-base">qr_code_2</span>Connect
+                </a>
+                <a href="heet_resume.pdf" download class="primary-gradient text-surface px-5 py-2 rounded-lg font-headline font-bold text-sm hover:brightness-110 active:scale-95 transition-all shadow-md shadow-primary/20">
+                    Resume
+                </a>
+            </div>
+
+            <button id="mobile-menu-btn" class="md:hidden text-primary focus:outline-none">
+                <span class="material-symbols-outlined text-3xl" id="mobile-menu-icon">menu</span>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="md:hidden hidden bg-surface-container-lowest/96 backdrop-blur-xl border-t border-white/5 absolute w-full shadow-2xl">
+            <a class="flex items-center gap-3 p-4 px-6 font-headline font-semibold text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors border-b border-white/5" href="index.html">
+                <span class="material-symbols-outlined text-sm">home</span>Home
+            </a>
+            <a class="flex items-center gap-3 p-4 px-6 font-headline font-semibold text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors border-b border-white/5" href="projects.html">
+                <span class="material-symbols-outlined text-sm">folder_code</span>Projects
+            </a>
+            <a class="flex items-center gap-3 p-4 px-6 font-headline font-semibold text-primary bg-primary/5 border-b border-white/5" href="about.html">
+                <span class="material-symbols-outlined text-sm">person</span>Skills
+            </a>
+            <a class="flex items-center gap-3 p-4 px-6 font-headline font-semibold text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors border-b border-white/5" href="services.html">
+                <span class="material-symbols-outlined text-sm">support_agent</span>IT Support
+            </a>
+            <div class="p-6 flex gap-3">
+                <a href="index.html#connect" class="flex-1 text-center bg-surface-container border border-outline-variant/25 text-on-surface px-4 py-3 rounded-lg font-headline font-bold text-sm flex items-center justify-center gap-1.5">
+                    <span class="material-symbols-outlined text-sm">qr_code_2</span>Connect
+                </a>
+                <a href="heet_resume.pdf" download class="flex-1 text-center primary-gradient text-surface px-4 py-3 rounded-lg font-headline font-bold text-sm">
+                    Resume
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN -->
+    <main class="relative z-10 pt-32 pb-24 px-6 md:px-10 max-w-7xl mx-auto space-y-28">
+
+        <!-- ── INTRO ── -->
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-14 items-start animate-on-scroll">
+            <div class="lg:col-span-7 space-y-7">
+                <div class="inline-block px-3 py-1.5 bg-surface-container-low border border-outline-variant/20 rounded-full">
+                    <span class="font-mono text-[9px] uppercase tracking-widest text-secondary">Profile · Automation & AI Specialist</span>
+                </div>
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-headline font-bold tracking-tighter leading-[1.04]">
+                    Merging <span class="gradient-text">Logic</span><br/>with Human Intuition.
+                </h1>
+                <p class="text-on-surface-variant text-lg leading-relaxed max-w-xl">
+                    Full-Stack Developer and IT Engineering specialist based in Australia. I specialize in building human-centric software architectures and enterprise-grade infrastructure.
+                </p>
+                <div class="flex items-center gap-6 pt-2">
+                    <div>
+                        <span class="font-mono text-[9px] text-primary uppercase tracking-widest">Status</span>
+                        <div class="flex items-center gap-1.5 mt-1">
+                            <span class="w-1.5 h-1.5 bg-primary rounded-full animate-pulse"></span>
+                            <span class="font-headline font-semibold text-sm text-on-surface">Academic Engineering</span>
+                        </div>
+                    </div>
+                    <div class="w-px h-8 bg-gradient-to-b from-transparent via-outline-variant/40 to-transparent"></div>
+                    <div>
+                        <span class="font-mono text-[9px] text-primary uppercase tracking-widest">Location</span>
+                        <div class="font-headline font-semibold text-sm text-on-surface mt-1">Adelaide, Australia</div>
+                    </div>
+                    <div class="w-px h-8 bg-gradient-to-b from-transparent via-outline-variant/40 to-transparent"></div>
+                    <div>
+                        <span class="font-mono text-[9px] text-primary uppercase tracking-widest">Degree</span>
+                        <div class="font-headline font-semibold text-sm text-on-surface mt-1">M.Eng Computer</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-5 relative">
+                <div class="profile-img-wrapper aspect-square bg-surface-container-low rounded-2xl overflow-hidden border border-outline-variant/20 relative z-10 group shadow-2xl">
+                    <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 opacity-85 group-hover:opacity-100 group-hover:scale-105" src="linked in photot.png" alt="Heet Patel Portrait"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-surface/60 to-transparent opacity-60 group-hover:opacity-20 transition-opacity"></div>
+                </div>
+                <div class="absolute -bottom-5 -right-5 w-44 h-44 bg-surface-container-highest/40 rounded-xl border border-outline-variant/15 backdrop-blur-sm hidden md:block -z-0"></div>
+                <div class="absolute -top-4 -left-4 w-20 h-20 bg-primary/5 rounded-xl border border-primary/10 hidden md:block -z-0"></div>
+            </div>
+        </section>
+
+        <!-- ── TECH STACK ── -->
+        <section class="space-y-12 animate-on-scroll">
+            <div>
+                <div class="font-mono text-[10px] text-secondary uppercase tracking-widest mb-3">Proficiencies</div>
+                <h2 class="text-4xl font-headline font-bold tracking-tight border-b border-outline-variant/15 pb-6">
+                    Technical & Intelligence Stack
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                <!-- Advanced AI -->
+                <div class="glass-card rounded-2xl p-8 space-y-7">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-primary/10 border border-primary/18 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-primary" style="font-size:22px">psychology</span>
+                        </div>
+                        <h3 class="font-headline font-bold text-lg">Advanced AI</h3>
+                    </div>
+                    <div class="space-y-5">
+                        <div>
+                            <div class="flex justify-between mb-1.5 font-mono text-xs text-secondary">
+                                <span>Bias & Trustworthiness</span><span class="text-primary font-bold">94%</span>
+                            </div>
+                            <div class="skill-bar"><div class="skill-fill primary-gradient" style="width:94%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1.5 font-mono text-xs text-secondary">
+                                <span>RLHF & Alignment</span><span class="text-primary font-bold">88%</span>
+                            </div>
+                            <div class="skill-bar"><div class="skill-fill primary-gradient" style="width:88%"></div></div>
+                        </div>
+                        <div class="flex flex-wrap gap-1.5 pt-1">
+                            <span class="tech-pill">PyTorch</span>
+                            <span class="tech-pill">Transformers</span>
+                            <span class="tech-pill">DPO/PPO</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Development -->
+                <div class="glass-card rounded-2xl p-8 space-y-7">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-secondary/10 border border-secondary/18 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-secondary" style="font-size:22px">code</span>
+                        </div>
+                        <h3 class="font-headline font-bold text-lg">Development</h3>
+                    </div>
+                    <div class="space-y-5">
+                        <div>
+                            <div class="flex justify-between mb-1.5 font-mono text-xs text-secondary">
+                                <span>React / Next.js</span><span class="text-secondary font-bold">91%</span>
+                            </div>
+                            <div class="skill-bar"><div class="skill-fill bg-secondary" style="width:91%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1.5 font-mono text-xs text-secondary">
+                                <span>Node.js / Go</span><span class="text-secondary font-bold">85%</span>
+                            </div>
+                            <div class="skill-bar"><div class="skill-fill bg-secondary" style="width:85%"></div></div>
+                        </div>
+                        <div class="flex flex-wrap gap-1.5 pt-1">
+                            <span class="tech-pill sec">React</span>
+                            <span class="tech-pill sec">Node.js</span>
+                            <span class="tech-pill sec">Tailwind</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quant & Systems -->
+                <div class="glass-card rounded-2xl p-8 space-y-7">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-tertiary/10 border border-tertiary/18 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-tertiary" style="font-size:22px">query_stats</span>
+                        </div>
+                        <h3 class="font-headline font-bold text-lg">Quant & Systems</h3>
+                    </div>
+                    <div class="space-y-5">
+                        <div>
+                            <div class="flex justify-between mb-1.5 font-mono text-xs text-secondary">
+                                <span>Quant Analysis</span><span class="text-tertiary font-bold">85%</span>
+                            </div>
+                            <div class="skill-bar"><div class="skill-fill bg-tertiary" style="width:85%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1.5 font-mono text-xs text-secondary">
+                                <span>Network Admin</span><span class="text-tertiary font-bold">96%</span>
+                            </div>
+                            <div class="skill-bar"><div class="skill-fill bg-tertiary" style="width:96%"></div></div>
+                        </div>
+                        <div class="flex flex-wrap gap-1.5 pt-1">
+                            <span class="tech-pill ter">Pandas/NumPy</span>
+                            <span class="tech-pill ter">TCP/IP</span>
+                            <span class="tech-pill ter">Linux/Unix</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── SOFT SKILLS ── -->
+        <section class="space-y-12 animate-on-scroll">
+            <div>
+                <div class="font-mono text-[10px] text-secondary uppercase tracking-widest mb-3">Human Factors</div>
+                <h2 class="text-4xl font-headline font-bold tracking-tight border-b border-outline-variant/15 pb-6">Industry Soft Skills</h2>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
+                <div class="soft-card p-6 rounded-2xl">
+                    <div class="w-10 h-10 rounded-xl bg-primary/10 border border-primary/18 flex items-center justify-center mb-4">
+                        <span class="material-symbols-outlined text-primary" style="font-size:20px">groups</span>
+                    </div>
+                    <h4 class="font-headline font-bold mb-2 text-on-surface">Technical Leadership</h4>
+                    <p class="text-xs text-on-surface-variant leading-relaxed">Mentoring cross-functional teams and bridging engineering with stakeholders.</p>
+                </div>
+                <div class="soft-card p-6 rounded-2xl">
+                    <div class="w-10 h-10 rounded-xl bg-secondary/10 border border-secondary/18 flex items-center justify-center mb-4">
+                        <span class="material-symbols-outlined text-secondary" style="font-size:20px">forum</span>
+                    </div>
+                    <h4 class="font-headline font-bold mb-2 text-on-surface">Effective Communication</h4>
+                    <p class="text-xs text-on-surface-variant leading-relaxed">Synthesizing complex architectures into actionable insights for leadership.</p>
+                </div>
+                <div class="soft-card p-6 rounded-2xl">
+                    <div class="w-10 h-10 rounded-xl bg-tertiary/10 border border-tertiary/18 flex items-center justify-center mb-4">
+                        <span class="material-symbols-outlined text-tertiary" style="font-size:20px">lightbulb</span>
+                    </div>
+                    <h4 class="font-headline font-bold mb-2 text-on-surface">Critical Reasoning</h4>
+                    <p class="text-xs text-on-surface-variant leading-relaxed">Systematic problem-solving in high-pressure environments with long-term focus.</p>
+                </div>
+                <div class="soft-card p-6 rounded-2xl">
+                    <div class="w-10 h-10 rounded-xl bg-primary/10 border border-primary/18 flex items-center justify-center mb-4">
+                        <span class="material-symbols-outlined text-primary" style="font-size:20px">architecture</span>
+                    </div>
+                    <h4 class="font-headline font-bold mb-2 text-on-surface">Modular Thinking</h4>
+                    <p class="text-xs text-on-surface-variant leading-relaxed">Designing decoupled, extensible systems that anticipate future industry shifts.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── EXPERIENCE + EDUCATION ── -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-16 animate-on-scroll">
+
+            <!-- Experience -->
+            <div class="space-y-10">
+                <div>
+                    <div class="font-mono text-[10px] text-secondary uppercase tracking-widest mb-3">Career</div>
+                    <h2 class="text-4xl font-headline font-bold tracking-tight">Experience Log</h2>
+                </div>
+                <div class="relative border-l border-outline-variant/20 pl-8 space-y-10">
+                    <div class="relative">
+                        <div class="absolute -left-[41px] top-0.5 w-5 h-5 rounded-full tl-dot-primary"></div>
+                        <h4 class="text-xl font-headline font-bold text-on-surface">IT Support Specialist</h4>
+                        <div class="text-primary font-mono text-[10px] uppercase tracking-widest mt-1 mb-3">Blue Mouse Computers · 2024 — Present</div>
+                        <p class="text-sm text-on-surface-variant leading-relaxed">
+                            Managing IT infrastructure and providing comprehensive technical support and systematic troubleshooting to optimize operational capabilities.
+                        </p>
+                    </div>
+                    <div class="relative">
+                        <div class="absolute -left-[41px] top-0.5 w-5 h-5 rounded-full tl-dot-tertiary"></div>
+                        <h4 class="text-xl font-headline font-bold text-on-surface">Team Leader</h4>
+                        <div class="text-tertiary font-mono text-[10px] uppercase tracking-widest mt-1 mb-3">Budget Car and Truck Rental · 2024 — Present</div>
+                        <p class="text-sm text-on-surface-variant leading-relaxed">
+                            Leading and mentoring cross-functional operational teams, focusing on optimized service delivery, staff coordination, and workflow synthesis.
+                        </p>
+                    </div>
+                    <div class="relative">
+                        <div class="absolute -left-[41px] top-0.5 w-5 h-5 rounded-full tl-dot-secondary"></div>
+                        <h4 class="text-xl font-headline font-bold text-on-surface">Software Engineer</h4>
+                        <div class="text-secondary font-mono text-[10px] uppercase tracking-widest mt-1 mb-3">Hidden Brains Technology · 2023 — 2024</div>
+                        <p class="text-sm text-on-surface-variant leading-relaxed">
+                            Developed a secure network IP address management web application with automated PDF report generation and deep administrative capabilities.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Education -->
+            <div class="space-y-10">
+                <div>
+                    <div class="font-mono text-[10px] text-secondary uppercase tracking-widest mb-3">Academics</div>
+                    <h2 class="text-4xl font-headline font-bold tracking-tight">Academic Focus</h2>
+                </div>
+                <div class="relative border-l border-outline-variant/20 pl-8 space-y-10">
+                    <div class="relative">
+                        <div class="absolute -left-[41px] top-0.5 w-5 h-5 rounded-full tl-dot-tertiary"></div>
+                        <h4 class="text-xl font-headline font-bold text-on-surface">Masters in Computer Engineering</h4>
+                        <div class="text-tertiary font-mono text-[10px] uppercase tracking-widest mt-1 mb-3">Adelaide University · Current</div>
+                        <p class="text-sm text-on-surface-variant leading-relaxed">
+                            Pursuing a Master's degree with active focus on advanced software engineering, AI/LLM research, and enterprise network architectures.
+                        </p>
+                    </div>
+                    <div class="relative">
+                        <div class="absolute -left-[41px] top-0.5 w-5 h-5 rounded-full tl-dot-dim"></div>
+                        <h4 class="text-xl font-headline font-bold text-on-surface">B.Tech in Computer Engineering</h4>
+                        <div class="text-secondary font-mono text-[10px] uppercase tracking-widest mt-1 mb-3">GTU, Ahmedabad, Gujarat · Completed</div>
+                        <p class="text-sm text-on-surface-variant leading-relaxed">
+                            Undergraduate engineering degree with a strong foundation in computer science, systems design, and quantitative logic.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="relative z-10 border-t border-white/6 py-12 bg-surface-container-lowest">
+        <div class="max-w-7xl mx-auto px-6 md:px-10 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 primary-gradient rounded-xl flex items-center justify-center">
+                    <span class="material-symbols-outlined text-surface" style="font-size:18px">memory</span>
+                </div>
+                <div>
+                    <div class="font-headline font-bold text-on-surface text-sm">Heet Patel</div>
+                    <div class="font-mono text-[9px] text-secondary uppercase tracking-widest">AI Engineer & Full-Stack Developer</div>
+                </div>
+            </div>
+            <div class="flex gap-7">
+                <a href="https://github.com/heet579" target="_blank" class="font-mono text-[10px] uppercase tracking-widest text-secondary hover:text-primary transition-colors">GitHub</a>
+                <!-- UPDATE: Replace https://www.linkedin.com/in/heet0882/ with your actual LinkedIn URL -->
+                <a href="https://www.linkedin.com/in/heet0882/" target="_blank" class="font-mono text-[10px] uppercase tracking-widest text-secondary hover:text-primary transition-colors">LinkedIn</a>
+                <a href="mailto:heet0882@gmail.com" class="font-mono text-[10px] uppercase tracking-widest text-secondary hover:text-primary transition-colors">Email</a>
+                <a href="heet_resume.pdf" download class="font-mono text-[10px] uppercase tracking-widest text-secondary hover:text-primary transition-colors">Resume</a>
+            </div>
+            <div class="font-mono text-[10px] uppercase tracking-widest text-secondary/45">© 2025 Coded with logic · Heet Patel</div>
+        </div>
+    </footer>
+
+    <script>
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu    = document.getElementById('mobile-menu');
+        const mobileIcon    = document.getElementById('mobile-menu-icon');
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                mobileIcon.innerText = mobileMenu.classList.contains('hidden') ? 'menu' : 'close';
+            });
+        }
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); observer.unobserve(e.target); } });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Heet Patel — AI Engineer & Full-Stack Developer</title>
+    <meta name="description" content="Portfolio of Heet Patel — AI/ML Engineer, Full-Stack Developer, and IT Specialist based in Adelaide, Australia.">
+    <meta name="keywords" content="AI Engineer, Machine Learning, Full-Stack, React, Python, IT Support, Heet Patel, Adelaide">
+    <meta property="og:title" content="Heet Patel — AI Engineer & Full-Stack Developer">
+    <meta property="og:description" content="Building intelligent systems, elegant web apps, and robust IT infrastructure.">
+    <meta property="og:type" content="website">
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#4cd7f6",
+                        "secondary": "#adc6ff",
+                        "tertiary": "#d0bcff",
+                        "surface": "#080f20",
+                        "background": "#080f20",
+                        "on-background": "#dbe1fe",
+                        "on-surface": "#e8eeff",
+                        "on-surface-variant": "#bcc9cd",
+                        "outline-variant": "#3d494c",
+                        "surface-container-low": "#0f1728",
+                        "surface-container": "#141f35",
+                        "surface-container-high": "#1e2840",
+                        "surface-container-highest": "#28334e",
+                        "surface-container-lowest": "#050c1c",
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "mono": ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "monospace"],
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        * { box-sizing: border-box; }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* ── Ambient background ── */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .orb-1 {
+            width: 800px; height: 800px;
+            background: radial-gradient(circle, rgba(76,215,246,0.07) 0%, transparent 65%);
+            top: -250px; right: -200px;
+            animation: orb-drift 20s ease-in-out infinite alternate;
+        }
+        .orb-2 {
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(208,188,255,0.06) 0%, transparent 65%);
+            bottom: 0; left: -150px;
+            animation: orb-drift 26s ease-in-out infinite alternate-reverse;
+        }
+        @keyframes orb-drift {
+            from { transform: translate(0,0) scale(1); }
+            to   { transform: translate(60px,40px) scale(1.12); }
+        }
+        .dot-grid {
+            background-image: radial-gradient(rgba(76,215,246,0.065) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        /* ── Typography ── */
+        .gradient-text {
+            background: linear-gradient(135deg, #4cd7f6 0%, #adc6ff 55%, #d0bcff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .primary-gradient {
+            background: linear-gradient(135deg, #4cd7f6 0%, #06b6d4 100%);
+        }
+
+        /* ── Nav ── */
+        .glass-nav {
+            background: rgba(8,15,32,0.8);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+
+        /* ── Cards ── */
+        .glass-card {
+            background: rgba(15,23,40,0.65);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(61,73,76,0.25);
+            transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+        }
+        .glass-card:hover {
+            border-color: rgba(76,215,246,0.35);
+            box-shadow: 0 0 32px rgba(76,215,246,0.08), 0 20px 60px rgba(0,0,0,0.35);
+            transform: translateY(-4px);
+        }
+
+        .domain-card {
+            background: rgba(15,23,40,0.65);
+            border: 1px solid rgba(61,73,76,0.2);
+            transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+            overflow: hidden;
+        }
+        .domain-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(76,215,246,0.38);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(76,215,246,0.09);
+        }
+
+        /* ── Skill bars ── */
+        .skill-bar { height: 2px; border-radius: 2px; }
+        .skill-bar-fill {
+            height: 100%; border-radius: 2px;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 1.4s cubic-bezier(0.4,0,0.2,1) 0.2s;
+        }
+        .is-visible .skill-bar-fill { transform: scaleX(1); }
+
+        /* ── QR cards ── */
+        .qr-card {
+            background: rgba(10,18,35,0.9);
+            border: 1px solid rgba(76,215,246,0.15);
+            border-radius: 20px;
+            padding: 32px 24px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+        }
+        .qr-card:hover {
+            border-color: rgba(76,215,246,0.45);
+            box-shadow: 0 0 40px rgba(76,215,246,0.12), 0 20px 60px rgba(0,0,0,0.4);
+            transform: translateY(-4px);
+        }
+
+        /* ── Floating widget ── */
+        .float-connect {
+            position: fixed; bottom: 28px; right: 28px; z-index: 60;
+            background: linear-gradient(135deg, #4cd7f6 0%, #06b6d4 100%);
+            border-radius: 50px; padding: 11px 18px;
+            display: flex; align-items: center; gap: 7px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700; font-size: 13px; color: #080f20;
+            box-shadow: 0 8px 32px rgba(76,215,246,0.38);
+            transition: all 0.3s; border: none; cursor: pointer;
+        }
+        .float-connect:hover { transform: translateY(-3px); box-shadow: 0 12px 44px rgba(76,215,246,0.5); }
+
+        .qr-popup {
+            position: fixed; bottom: 82px; right: 28px; z-index: 60;
+            background: rgba(8,15,32,0.96);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(76,215,246,0.18);
+            border-radius: 20px; padding: 20px; width: 280px;
+            transform: translateY(16px) scale(0.95);
+            opacity: 0; pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.55), 0 0 40px rgba(76,215,246,0.09);
+        }
+        .qr-popup.active { transform: translateY(0) scale(1); opacity: 1; pointer-events: all; }
+
+        /* ── Hero image border ── */
+        .hero-frame::before {
+            content: '';
+            position: absolute; inset: -2px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #4cd7f6, #adc6ff, #d0bcff, #4cd7f6);
+            background-size: 300% 300%;
+            animation: grad-shift 7s ease infinite;
+            z-index: -1; opacity: 0.55;
+        }
+        @keyframes grad-shift {
+            0%   { background-position: 0% 50%; }
+            50%  { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* ── Scroll animations ── */
+        .animate-on-scroll {
+            opacity: 0; transform: translateY(22px);
+            transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1),
+                        transform 0.8s cubic-bezier(0.4,0,0.2,1);
+        }
+        .animate-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
+
+        /* ── Tech tags ── */
+        .tech-tag {
+            display: inline-block; padding: 3px 9px;
+            background: rgba(76,215,246,0.07);
+            border: 1px solid rgba(76,215,246,0.14);
+            border-radius: 4px; font-family: ui-monospace, monospace;
+            font-size: 10px; color: #4cd7f6;
+            transition: all 0.2s;
+        }
+        .tech-tag:hover { background: rgba(76,215,246,0.14); border-color: rgba(76,215,246,0.38); }
+        .tech-tag.sec { color: #adc6ff; background: rgba(173,198,255,0.07); border-color: rgba(173,198,255,0.14); }
+        .tech-tag.ter { color: #d0bcff; background: rgba(208,188,255,0.07); border-color: rgba(208,188,255,0.14); }
+
+        /* ── Stat divider ── */
+        .stat-sep { width:1px; height:36px; background: linear-gradient(to bottom, transparent, rgba(76,215,246,0.28), transparent); }
+
+        /* ── Typewriter cursor ── */
+        .tw-cursor::after { content:'|'; animation: blink 1s step-end infinite; color:#4cd7f6; }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+        /* ── Scrollbar ── */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #080f20; }
+        ::-webkit-scrollbar-thumb { background: rgba(76,215,246,0.28); border-radius: 3px; }
+
+        ::selection { background: rgba(76,215,246,0.22); color: #4cd7f6; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body overflow-x-hidden">
+
+    <!-- Ambient background -->
+    <div class="orb orb-1" aria-hidden="true"></div>
+    <div class="orb orb-2" aria-hidden="true"></div>
+    <div class="dot-grid fixed inset-0 pointer-events-none z-0 opacity-60" aria-hidden="true"></div>
+
+    <!-- ══════════════════════════ NAV ══════════════════════════ -->
+    <nav class="fixed top-0 w-full z-50 glass-nav border-b border-white/5 transition-all duration-300">
+        <div class="flex justify-between items-center px-6 md:px-10 h-20 max-w-7xl mx-auto">
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-9 h-9 primary-gradient rounded-xl flex items-center justify-center shadow-lg shadow-primary/20 group-hover:brightness-110 transition-all">
+                    <span class="material-symbols-outlined text-surface" style="font-size:18px">memory</span>
+                </div>
+                <div>
+                    <div class="font-headline font-bold text-on-surface leading-none">Heet Patel</div>
+                    <div class="font-mono text-[9px] text-secondary uppercase tracking-widest">AI Engineer</div>
+                </div>
+            </a>
+
+            <!-- Desktop links -->
+            <div class="hidden md:flex items-center gap-8">
+                <a class="font-headline font-semibold text-primary border-b border-primary pb-0.5 transition-colors" href="index.html">Home</a>
+                <a class="font-headline font-semibold text-on-surface-variant hover:text-primary transition-colors" href="projects.html">Projects</a>
+                <a class="font-headline font-semibold text-on-surface-variant hover:text-primary transition-colors" href="about.html">Skills</a>
+                <a class="font-headline font-semibold text-on-surface-variant hover:text-primary transition-colors" href="services.html">IT Support</a>
+            </div>
+
+            <!-- Desktop right -->
+            <div class="hidden md:flex items-center gap-4">
+                <a href="#connect" class="flex items-center gap-1.5 font-headline font-semibold text-sm text-secondary hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined text-base">qr_code_2</span>Connect
+                </a>
+                <a href="heet_resume.pdf" download class="primary-gradient text-surface px-5 py-2 rounded-lg font-headline font-bold text-sm hover:brightness-110 active:scale-95 transition-all shadow-md shadow-primary/20">
+                    Resume
+                </a>
+            </div>
+
+            <!-- Mobile hamburger -->
+            <button id="mobile-menu-btn" class="md:hidden text-primary focus:outline-none">
+                <span class="material-symbols-outlined text-3xl" id="mobile-menu-icon">menu</span>
+            </button>
+        </div>
+
+        <!-- Mobile dropdown -->
+        <div id="mobile-menu" class="md:hidden hidden bg-surface-container-lowest/96 backdrop-blur-xl border-t border-white/5 absolute w-full shadow-2xl">
+            <a class="flex items-center gap-3 p-4 px-6 font-headline font-semibold text-primary bg-primary/5 border-b border-white/5" href="index.html">
+                <span class="material-symbols-outlined text-sm">home</span>Home
+            </a>
+            <a class="flex items-center gap-3 p-4 px-6 font-headline font-semibold text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors border-b border-white/5" href="projects.html">
+                <span class="material-symbols-outlined text-sm">folder_code</span>Projects
+            </a>
+            <a class="flex items-center gap-3 p-4 px-6 font-headline font-semibold text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors border-b border-white/5" href="about.html">
+                <span class="material-symbols-outlined text-sm">person</span>Skills
+            </a>
+            <a class="flex items-center gap-3 p-4 px-6 font-headline font-semibold text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors border-b border-white/5" href="services.html">
+                <span class="material-symbols-outlined text-sm">support_agent</span>IT Support
+            </a>
+            <div class="p-6 flex gap-3">
+                <a href="#connect" class="flex-1 text-center bg-surface-container border border-outline-variant/25 text-on-surface px-4 py-3 rounded-lg font-headline font-bold text-sm flex items-center justify-center gap-1.5">
+                    <span class="material-symbols-outlined text-sm">qr_code_2</span>Connect
+                </a>
+                <a href="heet_resume.pdf" download class="flex-1 text-center primary-gradient text-surface px-4 py-3 rounded-lg font-headline font-bold text-sm">
+                    Resume
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ══════════════════════════ MAIN ══════════════════════════ -->
+    <main class="relative z-10 pt-20">
+
+        <!-- ── HERO ── -->
+        <section class="relative min-h-[94vh] flex items-center overflow-hidden px-6 md:px-10">
+            <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-14 items-center py-16">
+
+                <!-- Left -->
+                <div class="lg:col-span-7 space-y-8 animate-on-scroll">
+
+                    <!-- Status pill -->
+                    <div class="inline-flex items-center gap-2 px-4 py-2 bg-surface-container-low border border-outline-variant/20 rounded-full">
+                        <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                        <span class="font-mono text-[10px] uppercase tracking-widest text-secondary">Open to Opportunities · Adelaide, AU</span>
+                    </div>
+
+                    <!-- Headline -->
+                    <h1 class="text-5xl md:text-6xl lg:text-[68px] font-headline font-extrabold tracking-tighter leading-[1.04]">
+                        Engineering<br/>
+                        Intelligence<br/>
+                        <span class="gradient-text">With A Human Pulse.</span>
+                    </h1>
+
+                    <!-- Subtitle -->
+                    <p class="text-lg text-on-surface-variant max-w-lg leading-relaxed">
+                        <span class="text-secondary font-medium">Masters in Computer Engineering</span> at Adelaide University — building AI systems, full-stack applications, and enterprise IT infrastructure.
+                    </p>
+
+                    <!-- Stats row -->
+                    <div class="flex items-center gap-8">
+                        <div>
+                            <div class="text-3xl font-headline font-extrabold text-primary">3+</div>
+                            <div class="font-mono text-[9px] text-on-surface-variant uppercase tracking-widest mt-0.5">Years Exp.</div>
+                        </div>
+                        <div class="stat-sep"></div>
+                        <div>
+                            <div class="text-3xl font-headline font-extrabold text-secondary">10+</div>
+                            <div class="font-mono text-[9px] text-on-surface-variant uppercase tracking-widest mt-0.5">Projects</div>
+                        </div>
+                        <div class="stat-sep"></div>
+                        <div>
+                            <div class="text-3xl font-headline font-extrabold text-tertiary">4</div>
+                            <div class="font-mono text-[9px] text-on-surface-variant uppercase tracking-widest mt-0.5">Domains</div>
+                        </div>
+                    </div>
+
+                    <!-- CTAs -->
+                    <div class="flex flex-wrap gap-3 pt-1">
+                        <a href="projects.html" class="primary-gradient text-surface px-8 py-4 rounded-xl font-headline font-bold hover:brightness-110 hover:shadow-[0_0_28px_rgba(76,215,246,0.38)] active:scale-95 transition-all shadow-md shadow-primary/20">
+                            View My Work
+                        </a>
+                        <a href="services.html" class="bg-surface-container border border-outline-variant/30 text-on-surface px-8 py-4 rounded-xl font-headline font-bold hover:border-primary/35 hover:bg-surface-container-high transition-all flex items-center gap-2">
+                            IT Solutions
+                            <span class="material-symbols-outlined text-primary text-base">arrow_forward</span>
+                        </a>
+                        <a href="#connect" class="border border-primary/28 text-primary px-7 py-4 rounded-xl font-headline font-bold hover:bg-primary/8 transition-all flex items-center gap-2">
+                            <span class="material-symbols-outlined text-base">qr_code_2</span>Connect
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right: profile image -->
+                <div class="lg:col-span-5 hidden lg:flex justify-center animate-on-scroll" style="transition-delay:200ms">
+                    <div class="relative w-full max-w-[340px]">
+                        <div id="hero-blob" class="absolute -top-16 -right-16 w-72 h-72 bg-primary/8 rounded-full blur-[80px] transition-transform duration-1000 ease-out pointer-events-none"></div>
+                        <div class="absolute -bottom-12 -left-10 w-48 h-48 bg-tertiary/8 rounded-full blur-[60px] pointer-events-none"></div>
+
+                        <!-- Gradient-border frame -->
+                        <div class="hero-frame relative rounded-2xl">
+                            <div class="bg-surface-container-low p-1.5 rounded-2xl shadow-2xl">
+                                <img src="linked in photot.png" alt="Heet Patel" class="w-full aspect-[4/5] object-cover rounded-xl grayscale hover:grayscale-0 transition-all duration-700 opacity-90 hover:opacity-100"/>
+                            </div>
+                        </div>
+
+                        <!-- Active process badge -->
+                        <div class="absolute -bottom-7 -left-7 bg-surface-container-highest border border-outline-variant/25 px-4 py-3 rounded-2xl shadow-2xl backdrop-blur-sm">
+                            <div class="font-mono text-[9px] text-secondary uppercase tracking-widest mb-1.5">Active Process</div>
+                            <div class="flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                                <span id="typewriter-el" class="font-headline font-bold text-sm text-on-surface tw-cursor"></span>
+                            </div>
+                        </div>
+
+                        <!-- Stack badge -->
+                        <div class="absolute -top-5 -right-5 bg-surface-container-highest border border-outline-variant/25 px-3 py-2.5 rounded-xl shadow-xl backdrop-blur-sm">
+                            <div class="font-mono text-[9px] text-secondary uppercase tracking-widest mb-1.5">Stack</div>
+                            <div class="flex gap-1.5">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag sec">React</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scroll hint -->
+            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 opacity-35">
+                <span class="font-mono text-[9px] uppercase tracking-widest text-secondary">Scroll</span>
+                <div class="w-px h-7 bg-secondary/40 rounded-full animate-bounce"></div>
+            </div>
+        </section>
+
+        <!-- ── WHAT I BUILD ── -->
+        <section class="py-24 px-6 md:px-10 animate-on-scroll">
+            <div class="max-w-7xl mx-auto">
+                <div class="mb-14">
+                    <div class="font-mono text-[10px] text-secondary uppercase tracking-widest mb-3">Expertise Domains</div>
+                    <h2 class="text-4xl md:text-5xl font-headline font-bold tracking-tighter">What I <span class="gradient-text">Build</span></h2>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                    <!-- AI & LLMs -->
+                    <div class="domain-card rounded-2xl p-8 group animate-on-scroll" style="transition-delay:0ms">
+                        <div class="w-13 h-13 w-12 h-12 rounded-2xl bg-primary/10 border border-primary/18 flex items-center justify-center mb-6 group-hover:bg-primary/18 transition-colors">
+                            <span class="material-symbols-outlined text-primary" style="font-size:26px">psychology</span>
+                        </div>
+                        <h3 class="text-lg font-headline font-bold text-on-surface mb-3">AI & LLMs</h3>
+                        <p class="text-sm text-on-surface-variant leading-relaxed mb-5">RAG pipelines, RLHF alignment, fine-tuning, and agentic workflows with LangChain and OpenAI.</p>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="tech-tag">PyTorch</span>
+                            <span class="tech-tag">LangChain</span>
+                            <span class="tech-tag">RLHF</span>
+                        </div>
+                    </div>
+
+                    <!-- Full-Stack Web -->
+                    <div class="domain-card rounded-2xl p-8 group animate-on-scroll" style="transition-delay:80ms">
+                        <div class="w-12 h-12 rounded-2xl bg-secondary/10 border border-secondary/18 flex items-center justify-center mb-6 group-hover:bg-secondary/18 transition-colors">
+                            <span class="material-symbols-outlined text-secondary" style="font-size:26px">code</span>
+                        </div>
+                        <h3 class="text-lg font-headline font-bold text-on-surface mb-3">Full-Stack Web</h3>
+                        <p class="text-sm text-on-surface-variant leading-relaxed mb-5">End-to-end web apps built with React, Next.js, Node.js, and modern UI/UX principles.</p>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="tech-tag sec">React</span>
+                            <span class="tech-tag sec">Next.js</span>
+                            <span class="tech-tag sec">TypeScript</span>
+                        </div>
+                    </div>
+
+                    <!-- Data Science -->
+                    <div class="domain-card rounded-2xl p-8 group animate-on-scroll" style="transition-delay:160ms">
+                        <div class="w-12 h-12 rounded-2xl bg-tertiary/10 border border-tertiary/18 flex items-center justify-center mb-6 group-hover:bg-tertiary/18 transition-colors">
+                            <span class="material-symbols-outlined text-tertiary" style="font-size:26px">query_stats</span>
+                        </div>
+                        <h3 class="text-lg font-headline font-bold text-on-surface mb-3">Data Science</h3>
+                        <p class="text-sm text-on-surface-variant leading-relaxed mb-5">XGBoost, SHAP explainability, fraud detection pipelines, and interactive ML dashboards.</p>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="tech-tag ter">Python</span>
+                            <span class="tech-tag ter">XGBoost</span>
+                            <span class="tech-tag ter">Streamlit</span>
+                        </div>
+                    </div>
+
+                    <!-- IT Infrastructure -->
+                    <div class="domain-card rounded-2xl p-8 group animate-on-scroll" style="transition-delay:240ms">
+                        <div class="w-12 h-12 rounded-2xl bg-primary/10 border border-primary/18 flex items-center justify-center mb-6 group-hover:bg-primary/18 transition-colors">
+                            <span class="material-symbols-outlined text-primary" style="font-size:26px">settings_ethernet</span>
+                        </div>
+                        <h3 class="text-lg font-headline font-bold text-on-surface mb-3">IT Infrastructure</h3>
+                        <p class="text-sm text-on-surface-variant leading-relaxed mb-5">Enterprise network design, hardware support, security hardening, and systems administration.</p>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="tech-tag">Linux</span>
+                            <span class="tech-tag">TCP/IP</span>
+                            <span class="tech-tag">Networks</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── CORE COMPETENCIES ── -->
+        <section class="py-24 px-6 md:px-10 bg-surface-container-low animate-on-scroll">
+            <div class="max-w-7xl mx-auto">
+                <div class="mb-14 flex items-end justify-between flex-wrap gap-4">
+                    <div>
+                        <div class="font-mono text-[10px] text-secondary uppercase tracking-widest mb-3">By The Numbers</div>
+                        <h2 class="text-4xl md:text-5xl font-headline font-bold tracking-tighter">Core Competencies</h2>
+                    </div>
+                    <a href="about.html" class="flex items-center gap-1.5 font-headline font-semibold text-sm text-secondary hover:text-primary transition-colors">
+                        Full Skills Profile <span class="material-symbols-outlined text-base">arrow_forward</span>
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                    <div class="glass-card rounded-2xl p-8 animate-on-scroll" style="transition-delay:0ms">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="p-3 bg-surface-container rounded-xl">
+                                <span class="material-symbols-outlined text-primary" style="font-size:30px">psychology</span>
+                            </div>
+                            <span class="font-mono text-sm font-bold text-primary">92%</span>
+                        </div>
+                        <h3 class="text-xl font-headline font-bold mb-3 text-primary">AI & LLM Architecture</h3>
+                        <p class="text-sm text-on-surface-variant leading-relaxed mb-6">RAG pipelines, vector database optimization, and custom agentic workflows.</p>
+                        <div class="skill-bar bg-surface-container-highest">
+                            <div class="skill-bar-fill primary-gradient" style="width:92%"></div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card rounded-2xl p-8 animate-on-scroll" style="transition-delay:100ms">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="p-3 bg-surface-container rounded-xl">
+                                <span class="material-symbols-outlined text-tertiary" style="font-size:30px">terminal</span>
+                            </div>
+                            <span class="font-mono text-sm font-bold text-tertiary">96%</span>
+                        </div>
+                        <h3 class="text-xl font-headline font-bold mb-3 text-tertiary">Software Engineering</h3>
+                        <p class="text-sm text-on-surface-variant leading-relaxed mb-6">Modern full-stack with React, Next.js, and Node.js. Microservices architecture.</p>
+                        <div class="skill-bar bg-surface-container-highest">
+                            <div class="skill-bar-fill bg-tertiary" style="width:96%"></div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card rounded-2xl p-8 animate-on-scroll" style="transition-delay:200ms">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="p-3 bg-surface-container rounded-xl">
+                                <span class="material-symbols-outlined text-secondary" style="font-size:30px">settings_ethernet</span>
+                            </div>
+                            <span class="font-mono text-sm font-bold text-secondary">88%</span>
+                        </div>
+                        <h3 class="text-xl font-headline font-bold mb-3 text-secondary">IT Support & Systems</h3>
+                        <p class="text-sm text-on-surface-variant leading-relaxed mb-6">Enterprise network security, server maintenance, and technical troubleshooting.</p>
+                        <div class="skill-bar bg-surface-container-highest">
+                            <div class="skill-bar-fill bg-secondary" style="width:88%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── CONNECT SECTION ── -->
+        <section id="connect" class="py-28 px-6 md:px-10 animate-on-scroll">
+            <div class="max-w-3xl mx-auto text-center space-y-14">
+                <div>
+                    <div class="font-mono text-[10px] text-secondary uppercase tracking-widest mb-3">Let's Work Together</div>
+                    <h2 class="text-4xl md:text-5xl font-headline font-bold tracking-tighter mb-4">
+                        Connect With <span class="gradient-text">Me</span>
+                    </h2>
+                    <p class="text-on-surface-variant text-lg">Scan to connect instantly — no typing required.</p>
+                </div>
+
+                <!-- QR cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-7 max-w-xl mx-auto">
+
+                    <!-- LinkedIn -->
+                    <!-- UPDATE: Replace https://www.linkedin.com/in/heet0882/ with your actual LinkedIn profile URL e.g. https://linkedin.com/in/your-name -->
+                    <a href="https://www.linkedin.com/in/heet0882/" target="_blank" rel="noopener noreferrer" class="qr-card block group">
+                        <div class="flex items-center justify-center gap-2 mb-6">
+                            <div class="w-8 h-8 bg-[#0A66C2]/15 border border-[#0A66C2]/25 rounded-lg flex items-center justify-center">
+                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="#0A66C2"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                            </div>
+                            <span class="font-headline font-bold text-on-surface text-base">LinkedIn</span>
+                        </div>
+
+                        <!-- QR wrapper with corner markers -->
+                        <div class="relative inline-block mb-6">
+                            <div class="p-3 bg-white rounded-2xl shadow-xl">
+                                <!-- UPDATE: Replace https://www.linkedin.com/in/heet0882/ in the data= parameter below -->
+                                <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://www.linkedin.com/in/heet0882/&color=080f20&bgcolor=ffffff&qzone=1&format=png" alt="LinkedIn QR Code" class="w-40 h-40 rounded-xl" loading="lazy"/>
+                            </div>
+                            <span class="absolute -top-1.5 -left-1.5 w-4 h-4 border-t-2 border-l-2 border-primary rounded-tl"></span>
+                            <span class="absolute -top-1.5 -right-1.5 w-4 h-4 border-t-2 border-r-2 border-primary rounded-tr"></span>
+                            <span class="absolute -bottom-1.5 -left-1.5 w-4 h-4 border-b-2 border-l-2 border-primary rounded-bl"></span>
+                            <span class="absolute -bottom-1.5 -right-1.5 w-4 h-4 border-b-2 border-r-2 border-primary rounded-br"></span>
+                        </div>
+
+                        <p class="font-mono text-[9px] uppercase tracking-widest text-on-surface-variant mb-3">Scan to View Profile</p>
+                        <span class="inline-flex items-center gap-1 text-sm font-headline font-semibold text-primary group-hover:underline">
+                            Open LinkedIn <span class="material-symbols-outlined text-sm">open_in_new</span>
+                        </span>
+                    </a>
+
+                    <!-- Gmail -->
+                    <a href="mailto:heet0882@gmail.com?subject=Collaboration%20Inquiry" class="qr-card block group">
+                        <div class="flex items-center justify-center gap-2 mb-6">
+                            <div class="w-8 h-8 bg-red-500/15 border border-red-500/25 rounded-lg flex items-center justify-center">
+                                <svg class="w-4 h-4" viewBox="0 0 24 24"><path fill="#EA4335" d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.907 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
+                            </div>
+                            <span class="font-headline font-bold text-on-surface text-base">Gmail</span>
+                        </div>
+
+                        <div class="relative inline-block mb-6">
+                            <div class="p-3 bg-white rounded-2xl shadow-xl">
+                                <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=mailto%3Aheet0882%40gmail.com%3Fsubject%3DCollaboration%2520Inquiry&color=080f20&bgcolor=ffffff&qzone=1&format=png" alt="Gmail QR Code" class="w-40 h-40 rounded-xl" loading="lazy"/>
+                            </div>
+                            <span class="absolute -top-1.5 -left-1.5 w-4 h-4 border-t-2 border-l-2 border-primary rounded-tl"></span>
+                            <span class="absolute -top-1.5 -right-1.5 w-4 h-4 border-t-2 border-r-2 border-primary rounded-tr"></span>
+                            <span class="absolute -bottom-1.5 -left-1.5 w-4 h-4 border-b-2 border-l-2 border-primary rounded-bl"></span>
+                            <span class="absolute -bottom-1.5 -right-1.5 w-4 h-4 border-b-2 border-r-2 border-primary rounded-br"></span>
+                        </div>
+
+                        <p class="font-mono text-[9px] uppercase tracking-widest text-on-surface-variant mb-3">Scan to Email Me</p>
+                        <span class="inline-flex items-center gap-1 text-sm font-headline font-semibold text-primary group-hover:underline">
+                            heet0882@gmail.com <span class="material-symbols-outlined text-sm">mail</span>
+                        </span>
+                    </a>
+                </div>
+
+                <!-- Additional links row -->
+                <div class="flex flex-wrap justify-center gap-3">
+                    <a href="https://github.com/heet579" target="_blank" rel="noopener noreferrer"
+                       class="flex items-center gap-2 px-5 py-3 bg-surface-container border border-outline-variant/20 rounded-xl font-headline font-semibold text-sm text-on-surface-variant hover:text-primary hover:border-primary/28 transition-all">
+                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                        GitHub
+                    </a>
+                    <a href="heet_resume.pdf" download
+                       class="flex items-center gap-2 px-5 py-3 bg-surface-container border border-outline-variant/20 rounded-xl font-headline font-semibold text-sm text-on-surface-variant hover:text-primary hover:border-primary/28 transition-all">
+                        <span class="material-symbols-outlined text-sm">download</span>Download Resume
+                    </a>
+                    <a href="services.html"
+                       class="flex items-center gap-2 px-5 py-3 bg-surface-container border border-outline-variant/20 rounded-xl font-headline font-semibold text-sm text-on-surface-variant hover:text-primary hover:border-primary/28 transition-all">
+                        <span class="material-symbols-outlined text-sm">support_agent</span>IT Support
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ══════════════════════════ FOOTER ══════════════════════════ -->
+    <footer class="relative z-10 border-t border-white/6 py-12 bg-surface-container-lowest">
+        <div class="max-w-7xl mx-auto px-6 md:px-10 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 primary-gradient rounded-xl flex items-center justify-center">
+                    <span class="material-symbols-outlined text-surface" style="font-size:18px">memory</span>
+                </div>
+                <div>
+                    <div class="font-headline font-bold text-on-surface text-sm">Heet Patel</div>
+                    <div class="font-mono text-[9px] text-secondary uppercase tracking-widest">AI Engineer & Full-Stack Developer</div>
+                </div>
+            </div>
+
+            <div class="flex gap-7">
+                <a href="https://github.com/heet579" target="_blank" class="font-mono text-[10px] uppercase tracking-widest text-secondary hover:text-primary transition-colors">GitHub</a>
+                <!-- UPDATE: Replace https://www.linkedin.com/in/heet0882/ with your actual LinkedIn URL -->
+                <a href="https://www.linkedin.com/in/heet0882/" target="_blank" class="font-mono text-[10px] uppercase tracking-widest text-secondary hover:text-primary transition-colors">LinkedIn</a>
+                <a href="mailto:heet0882@gmail.com" class="font-mono text-[10px] uppercase tracking-widest text-secondary hover:text-primary transition-colors">Email</a>
+                <a href="heet_resume.pdf" download class="font-mono text-[10px] uppercase tracking-widest text-secondary hover:text-primary transition-colors">Resume</a>
+            </div>
+
+            <div class="font-mono text-[10px] uppercase tracking-widest text-secondary/45">
+                © 2025 Coded with logic · Heet Patel
+            </div>
+        </div>
+    </footer>
+
+    <!-- ══════════════════════════ FLOATING QR WIDGET ══════════════════════════ -->
+    <button class="float-connect" id="qr-toggle" aria-label="Quick Connect QR">
+        <span class="material-symbols-outlined" style="font-size:18px;color:#080f20">qr_code_2</span>
+        <span>Scan Me</span>
+    </button>
+
+    <!-- QR popup -->
+    <div class="qr-popup" id="qr-popup" role="dialog" aria-label="Quick Connect QR Codes">
+        <div class="flex justify-between items-center mb-4">
+            <span class="font-headline font-bold text-sm text-on-surface">Quick Connect</span>
+            <button id="qr-close" class="text-on-surface-variant hover:text-primary transition-colors p-1">
+                <span class="material-symbols-outlined text-base">close</span>
+            </button>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+            <!-- UPDATE: Replace https://www.linkedin.com/in/heet0882/ in href and data= below -->
+            <a href="https://www.linkedin.com/in/heet0882/" target="_blank" rel="noopener noreferrer" class="text-center group">
+                <div class="p-2 bg-white rounded-xl mb-2 hover:shadow-md transition-shadow">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=110x110&data=https://www.linkedin.com/in/heet0882/&color=080f20&bgcolor=ffffff" alt="LinkedIn QR" class="w-full h-auto rounded-lg"/>
+                </div>
+                <span class="font-mono text-[9px] text-secondary group-hover:text-primary transition-colors uppercase tracking-widest">LinkedIn</span>
+            </a>
+            <a href="mailto:heet0882@gmail.com?subject=Collaboration%20Inquiry" class="text-center group">
+                <div class="p-2 bg-white rounded-xl mb-2 hover:shadow-md transition-shadow">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=110x110&data=mailto%3Aheet0882%40gmail.com%3Fsubject%3DCollaboration%2520Inquiry&color=080f20&bgcolor=ffffff" alt="Gmail QR" class="w-full h-auto rounded-lg"/>
+                </div>
+                <span class="font-mono text-[9px] text-secondary group-hover:text-primary transition-colors uppercase tracking-widest">Gmail</span>
+            </a>
+        </div>
+        <p class="font-mono text-[8px] text-center text-on-surface-variant mt-3 uppercase tracking-wider opacity-60">Point your phone camera at either code</p>
+    </div>
+
+    <!-- ══════════════════════════ SCRIPTS ══════════════════════════ -->
+    <script>
+        // Mobile menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu    = document.getElementById('mobile-menu');
+        const mobileIcon    = document.getElementById('mobile-menu-icon');
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                mobileIcon.innerText = mobileMenu.classList.contains('hidden') ? 'menu' : 'close';
+            });
+        }
+
+        // Scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+        // Hero blob mouse tracking
+        const heroBlob = document.getElementById('hero-blob');
+        if (heroBlob) {
+            document.addEventListener('mousemove', (e) => {
+                const x = (e.clientX / window.innerWidth  - 0.5) * 38;
+                const y = (e.clientY / window.innerHeight - 0.5) * 38;
+                heroBlob.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        }
+
+        // Typewriter that cycles through texts
+        const twEl = document.getElementById('typewriter-el');
+        const twTexts = [
+            'Fine-tuning Llama-3...',
+            'Building React App...',
+            'Training XGBoost...',
+            'Configuring Network...',
+            'Deploying Pipeline...',
+        ];
+        let twIdx = 0, twChar = 0, twDel = false;
+        function twTick() {
+            const cur = twTexts[twIdx];
+            twEl.innerText = twDel ? cur.slice(0, twChar - 1) : cur.slice(0, twChar + 1);
+            twDel ? twChar-- : twChar++;
+            if (!twDel && twChar === cur.length) {
+                twDel = true;
+                setTimeout(twTick, 2200); return;
+            }
+            if (twDel && twChar === 0) {
+                twDel = false;
+                twIdx = (twIdx + 1) % twTexts.length;
+                setTimeout(twTick, 350); return;
+            }
+            setTimeout(twTick, twDel ? 45 : 85);
+        }
+        setTimeout(twTick, 900);
+
+        // QR floating widget
+        const qrToggle = document.getElementById('qr-toggle');
+        const qrPopup  = document.getElementById('qr-popup');
+        const qrClose  = document.getElementById('qr-close');
+
+        qrToggle.addEventListener('click', (e) => { e.stopPropagation(); qrPopup.classList.toggle('active'); });
+        qrClose.addEventListener('click',  ()  => qrPopup.classList.remove('active'));
+        document.addEventListener('click', (e) => {
+            if (!qrPopup.contains(e.target) && !qrToggle.contains(e.target)) {
+                qrPopup.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
